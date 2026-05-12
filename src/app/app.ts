@@ -1,12 +1,14 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ParfuemListe } from './parfuem-liste/parfuem-liste'; // hier haben wir Angular den genauen Pfad gegeben wo die Datei liegt
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, ParfuemListe],//Wir haben die Parfüm-Liste in die offizielle Gästeliste (imports) der Haupt-App eingetragen
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('Parfuem_Frontend');
+  title = 'Parfuem_Frontend';
 }
