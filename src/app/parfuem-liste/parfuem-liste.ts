@@ -20,10 +20,10 @@ export class ParfuemListe implements OnInit {
     this.parfuemService.getParfuems().subscribe({
       next: (daten) => {
         this.parfuems = daten;
-        console.log('Erfolg! Parfüms wurden geladen:', this.parfuems);
+        console.log('Erfolgreich! Parfüms wurden geladen:', this.parfuems);
       },
       error: (fehler) => {
-        console.error('Fehler beim Laden der Daten:', fehler);
+        console.error('Fehler beim Laden der Daten: ', fehler);
       }
     });
   }
