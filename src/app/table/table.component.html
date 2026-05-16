@@ -1,14 +1,14 @@
 <div class="card shadow-sm">
   <div class="card-header bg-dark text-white">
-    <h3 class="card-title mb-0">قائمة العطور المتاحة 🌸</h3>
+    <h3 class="card-title mb-0">Verfügbare Parfüms 🌸</h3>
   </div>
   <div class="card-body">
     <table class="table table-striped table-hover align-middle">
       <thead class="table-dark">
         <tr>
-          <th>اسم العطر</th>
-          <th>الماركة (Brand)</th>
-          <th>السعر</th>
+          <th>Parfümname</th>
+          <th>Marke</th>
+          <th>Preis</th>
         </tr>
       </thead>
       <tbody>
@@ -19,7 +19,7 @@
         </tr>
         <tr *ngIf="parfuems.length === 0">
           <td colspan="3" class="text-center text-muted p-4">
-            لا توجد عطور حالياً في المتجر. تأكدي من تشغيل الـ Backend وإضافة عينات في MongoDB!
+            Keine Parfüms verfügbar. Bitte überprüfen Sie die Backend-Verbindung!
           </td>
         </tr>
       </tbody>
