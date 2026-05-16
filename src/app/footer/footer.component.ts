@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.css',
   
 })
-export class Footer {}
+export class FooterComponent {
+
+}
