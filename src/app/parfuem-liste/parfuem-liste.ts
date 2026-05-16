@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ParfuemService } from '../parfuem';
+import { ParfuemService } from '../parfuem.service';
 
 @Component({
   selector: 'app-parfuem-liste',
