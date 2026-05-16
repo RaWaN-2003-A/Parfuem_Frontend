@@ -1,1 +1,28 @@
-<p>table works!</p>
+<div class="card shadow-sm">
+  <div class="card-header bg-dark text-white">
+    <h3 class="card-title mb-0">قائمة العطور المتاحة 🌸</h3>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>اسم العطر</th>
+          <th>الماركة (Brand)</th>
+          <th>السعر</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of parfuems">
+          <td><strong>{{ p.name }}</strong></td>
+          <td><span class="badge bg-secondary">{{ p.marke }}</span></td>
+          <td><span class="text-success fw-bold">{{ p.preis }} €</span></td>
+        </tr>
+        <tr *ngIf="parfuems.length === 0">
+          <td colspan="3" class="text-center text-muted p-4">
+            لا توجد عطور حالياً في المتجر. تأكدي من تشغيل الـ Backend وإضافة عينات في MongoDB!
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
