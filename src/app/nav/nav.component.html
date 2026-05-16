@@ -1,18 +1,19 @@
-<p>nav works!</p>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="http://freiheit.f4.htw-berlin.de/webtech/fe-be-anbindung/">WebTech</a>
+      <a class="navbar-brand" routerLink="/">Parfüm Shop</a>
+      
       <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed"
           data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" 
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup" [class.show]="!isMenuCollapsed">
         <div class="navbar-nav">
-          <a class="nav-link"[routerLink]="['/']" (click)="isMenuCollapsed = true">Home</a>
+          <a class="nav-link" [routerLink]="['/']" (click)="isMenuCollapsed = true">Home</a>
           <a class="nav-link" [routerLink]="['/table']" (click)="isMenuCollapsed = true">Table</a>
           <a class="nav-link" [routerLink]="['/create']" (click)="isMenuCollapsed = true">Create</a>
         </div>
       </div>
     </div>
-  </nav>
+</nav>
