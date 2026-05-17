@@ -1,0 +1,41 @@
+/* تنسيق البطاقة (Card) لجعلها تبدو عصرية */
+.card {
+  border-radius: 15px;
+  border: none;
+  background-color: #fcfcfc;
+}
+
+/* تدرج لوني أنيق يشبه ألوان البحر والليل لترويسة البطاقة */
+.card-header {
+  border-top-left-radius: 15px !important;
+  border-top-right-radius: 15px !important;
+  background: linear-gradient(135deg, #4269b3 0%, #2d4e86 100%) !important;
+  padding: 15px 20px;
+}
+
+/* تنسيق حقول الإدخال لتكون ناعمة ومريحة للعين */
+.form-control {
+  border-radius: 8px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease-in-out;
+}
+
+/* تأثير جميل عند الضغط على حقل الإدخال للكتابة */
+.form-control:focus {
+  border-color: #2a5298;
+  box-shadow: 0 0 8px rgba(42, 82, 152, 0.2);
+}
+
+/* تنسيق الأزرار مع تأثير الارتفاع عند تمرير الفأرة */
+.btn {
+  border-radius: 8px;
+  padding: 10px 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
