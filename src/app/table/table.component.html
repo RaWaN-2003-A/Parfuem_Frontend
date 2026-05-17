@@ -19,6 +19,9 @@
           <td><span class="badge bg-secondary">{{ p.marke }}</span></td>
           <td><span class="text-success fw-bold">{{ p.preis }} €</span></td>
           <td>
+            <a [routerLink]="['/detail', p._id]" class="btn btn-sm btn-outline-primary">✏️ Edit</a>
+          </td>
+          <td>
             <button class="btn btn-sm btn-outline-danger" (click)="deleteParfuem(p._id)">🗑️ Löschen</button>
           </td>
         </tr>

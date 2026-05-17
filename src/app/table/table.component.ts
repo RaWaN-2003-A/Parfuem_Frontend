@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
+import { RouterLink } from '@angular/router';
 import { BackendService } from '../shared/backend.service';
 import { Parfuem } from '../shared/parfuem';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })

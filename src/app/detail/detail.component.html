@@ -1,1 +1,22 @@
-<p>detail works!</p>
+<div class="luxury-3d-card mt-4 mx-auto" style="max-width: 500px;">
+  <h3 class="title-lux text-center mb-4">Parfüm bearbeiten ✏️</h3>
+  
+  <form (ngSubmit)="aktualisieren()" class="d-flex flex-column">
+    <div class="mb-3">
+      <label class="form-label">Parfümname</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="parfuem.name" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Marke</label>
+      <input type="text" class="form-control" name="marke" [(ngModel)]="parfuem.marke" required>
+    </div>
+    <div class="mb-4">
+      <label class="form-label">Preis (€)</label>
+      <input type="number" class="form-control" name="preis" [(ngModel)]="parfuem.preis" required>
+    </div>
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary flex-grow-1">Aktualisieren (تحديث)</button>
+      <a routerLink="/table" class="btn btn-secondary">Abbrechen</a>
+    </div>
+  </form>
+</div>

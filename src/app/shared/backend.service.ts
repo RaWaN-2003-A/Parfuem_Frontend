@@ -31,6 +31,24 @@ export class BackendService {
     return savedParfuem;
   }
 
+  // 1. دالة لجلب بيانات عطر واحد فقط (عن طريق الـ ID) لعرضها في الفورم
+  async getOne(id: string): Promise<Parfuem> {
+    let response = await fetch(this.apiUrl + '/parfuems/' + id);
+    return await response.json();
+  }
+
+  // 2. دالة لإرسال التعديلات الجديدة للباك إند (طريقة PUT)
+  async update(id: string, parfuem: Parfuem): Promise<Parfuem> {
+    let response = await fetch(this.apiUrl + '/parfuems/' + id, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(parfuem)
+    });
+    return await response.json();
+  }
+
   // دالة لحذف عطر بناءً على الـ ID الخاص به (طريقة DELETE)
   async delete(id: string): Promise<void> {
     await fetch(this.apiUrl + '/parfuems/' + id, {
