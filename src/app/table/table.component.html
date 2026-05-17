@@ -9,13 +9,18 @@
           <th>Parfümname</th>
           <th>Marke</th>
           <th>Preis</th>
+          <th>Aktion</th>
         </tr>
       </thead>
+
       <tbody>
         <tr *ngFor="let p of parfuems">
           <td><strong>{{ p.name }}</strong></td>
           <td><span class="badge bg-secondary">{{ p.marke }}</span></td>
           <td><span class="text-success fw-bold">{{ p.preis }} €</span></td>
+          <td>
+            <button class="btn btn-sm btn-outline-danger" (click)="deleteParfuem(p._id)">🗑️ Löschen</button>
+          </td>
         </tr>
         <tr *ngIf="parfuems.length === 0">
           <td colspan="3" class="text-center text-muted p-4">

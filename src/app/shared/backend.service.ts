@@ -30,4 +30,12 @@ export class BackendService {
     console.log('Neue Parfüm erfolgreich hinzugefügt:', savedParfuem);
     return savedParfuem;
   }
+
+  // دالة لحذف عطر بناءً على الـ ID الخاص به (طريقة DELETE)
+  async delete(id: string): Promise<void> {
+    await fetch(this.apiUrl + '/parfuems/' + id, {
+      method: 'DELETE'
+    });
+    console.log('تم حذف العطر بنجاح!');
+  }
 }

@@ -28,4 +28,17 @@ export class TableComponent implements OnInit {
       console.error('حدث خطأ في جلب العطور:', error);
     }
   }
+
+  // دالة تُستدعى عند الضغط على زر الحذف في الجدول
+  async deleteParfuem(id: string | undefined) {
+    if (!id) return; // التأكد من وجود ID
+    
+    // إظهار رسالة تأكيد لطيفة للمستخدم قبل الحذف
+    const confirmDelete = confirm('Möchten Sie dieses Parfüm wirklich löschen? (هل تريد حقاً حذف هذا العطر؟)');
+    
+    if (confirmDelete) {
+      await this.backendService.delete(id); // نحذف العطر من الباك إند
+      await this.loadData(); // نحدث الجدول فوراً ليختفي العطر المحذوف
+    }
+  }
 }
