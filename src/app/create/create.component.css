@@ -1,41 +1,102 @@
-/* تنسيق البطاقة (Card) لجعلها تبدو عصرية */
-.card {
-  border-radius: 15px;
+/* تنسيق الصفحة بالكامل لتكون هادئة ومنتصفة */
+:host {
+  display: block;
+  background-color: #fdfaf6; /* كريمي هادئ جداً */
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* بطاقة الإضافة الرئيسية - سحر الـ 3D هنا */
+.luxury-3d-card {
+  background: white;
+  border-radius: 20px; /* زوايا دائرية ناعمة */
+  border: 1px solid rgba(220, 200, 170, 0.3); /* إطار ذهبي باهت شفاف */
+  max-width: 500px;
+  width: 90%;
+  
+  /* أهم جزء: الظلال التي تخلق تأثير الـ 3D والعمق */
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.05), /* ظل ناعم للعمق العام */
+    0 2px 4px rgba(220, 200, 170, 0.2); /* ظل ذهبي خفيف للإيحاء بالفخامة */
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* تأثير حركة ناعم */
+  padding: 30px;
+}
+
+/* تأثير تحريك البطاقة عند تمرير الفأرة عليها (Subtle 3D hover) */
+.luxury-3d-card:hover {
+  transform: translateY(-5px); /* ترتفع قليلاً */
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.08),
+    0 3px 6px rgba(220, 200, 170, 0.3);
+}
+
+/* تنسيق العنوان الرئيسي */
+.title-lux {
+  color: #5d4a36; /* بني ذهبي فخم وهادئ */
+  font-family: 'Playfair Display', serif; /* خط كلاسيكي (إذا توفر) */
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(220, 200, 170, 0.5);
+  padding-bottom: 10px;
+}
+
+/* تنسيق حقول الإدخال لتبدو غائرة (تأثير 3D معكوس) */
+.input-lux {
+  background-color: #fff;
+  border: 1px solid rgba(220, 200, 170, 0.4);
+  border-radius: 10px;
+  padding: 12px 15px;
+  color: #333;
+  margin-bottom: 20px;
+  
+  /* ظل داخلي يعطي شعوراً بالغوص في الصفحة */
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* عند الضغط على الحقل للضافة */
+.input-lux:focus {
+  border-color: #d6b682; /* ذهبي أغمق قليلاً */
+  box-shadow: 
+    inset 0 2px 5px rgba(0, 0, 0, 0.02),
+    0 0 10px rgba(202, 159, 90, 0.2); /* هالة ذهبية ناعمة */
+  outline: none;
+}
+
+/* تنسيق زر الحفظ - فخم وهادئ */
+.btn-save-lux {
+  background: linear-gradient(135deg, #b59f7b 0%, #a48e6b 100%); /* تدرج ذهبي باهت */
+  color: white;
   border: none;
-  background-color: #fcfcfc;
+  border-radius: 10px;
+  padding: 12px 25px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(145, 118, 74, 0.3); /* ظل ذهبي باهت للبروز */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
 }
 
-/* تدرج لوني أنيق يشبه ألوان البحر والليل لترويسة البطاقة */
-.card-header {
-  border-top-left-radius: 15px !important;
-  border-top-right-radius: 15px !important;
-  background: linear-gradient(135deg, #4269b3 0%, #2d4e86 100%) !important;
-  padding: 15px 20px;
+.btn-save-lux:hover {
+  background: linear-gradient(135deg, #a48e6b 0%, #b59f7b 100%);
+  transform: translateY(-2px); /* بروز إضافي عند التمرير */
+  box-shadow: 0 6px 15px rgba(168, 137, 85, 0.4);
 }
 
-/* تنسيق حقول الإدخال لتكون ناعمة ومريحة للعين */
-.form-control {
-  border-radius: 8px;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  transition: all 0.3s ease-in-out;
+/* تنسيق زر الإلغاء - هادئ جداً */
+.btn-cancel-lux {
+  background-color: white;
+  color: #b59f7b;
+  border: 1px solid rgba(124, 102, 69, 0.5);
+  border-radius: 10px;
+  padding: 12px 25px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* تأثير جميل عند الضغط على حقل الإدخال للكتابة */
-.form-control:focus {
-  border-color: #2a5298;
-  box-shadow: 0 0 8px rgba(42, 82, 152, 0.2);
-}
-
-/* تنسيق الأزرار مع تأثير الارتفاع عند تمرير الفأرة */
-.btn {
-  border-radius: 8px;
-  padding: 10px 25px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+.btn-cancel-lux:hover {
+  background-color: #fdfaf6;
+  border-color: rgba(220, 200, 170, 0.8);
 }
