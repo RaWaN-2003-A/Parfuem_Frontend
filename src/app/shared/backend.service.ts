@@ -17,4 +17,17 @@ export class BackendService {
     console.log('Parfüms in service (getAll) : ', parfuems);
     return parfuems;
   }
+  // دالة لإرسال عطر جديد إلى الباك إند (طريقة POST)
+  async create(parfuem: Parfuem): Promise<Parfuem> {
+    let response = await fetch(this.apiUrl + '/parfuems', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(parfuem)
+    });
+    let savedParfuem = await response.json();
+    console.log('Neue Parfüm erfolgreich hinzugefügt:', savedParfuem);
+    return savedParfuem;
+  }
 }
