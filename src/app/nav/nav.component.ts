@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router'; // impotiert die Router anstatt href  ohne refrech 
 
 @Component({
   selector: 'app-nav',

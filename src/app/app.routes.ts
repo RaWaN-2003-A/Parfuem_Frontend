@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Routes } from '@angular/router';  // URL Link zur verknupfung mit Component 
 import { HomeComponent } from './home/home.component.';
 import { TableComponent } from './table/table.component';
 import { CreateComponent } from './create/create.component';
