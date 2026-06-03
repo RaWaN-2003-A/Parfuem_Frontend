@@ -1,0 +1,65 @@
+/* Der Haupt-Hintergrund des Footers: Ein edler, dunkler Farbverlauf */
+.luxury-footer {
+  background: linear-gradient(to bottom, #834927, #965022); 
+  color: white;
+  text-align: center;
+  padding: 50px 20px 20px 20px;
+  margin-top: auto; /* Drückt den Footer immer ans untere Ende der Seite */
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.4); /* Leichter Schatten nach oben (3D-Effekt) */
+}
+
+/* Begrenzt die Breite, damit es auf großen Bildschirmen gut aussieht */
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Styling für "Rawan Oud" in Arabische schrift */
+.footer-brand {
+  color: #d4af37; /* Edles Gold */
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+  font-weight: normal;
+  /* Ein leichter goldener Schein um die Schrift (Glow-Effekt) */
+  text-shadow: 0 2px 15px rgba(212, 175, 55, 0.4); 
+}
+
+/* Styling für "DER DUFT DES RUHIGEN SOMMERS" */
+.footer-tagline {
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  letter-spacing: 4px; /* Weit auseinanderstehende */
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+/* Container für die Links */
+.footer-links {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 40px; /* Abstand zwischen den Links */
+}
+
+/* Styling der einzelnen Links */
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Hover-Effekt: Wenn man mit der Maus über die Links fährt, werden sie gold */
+.footer-links a:hover {
+  color: #d4af37;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+/* Die kleine Copyright-Zeile ganz unten */
+.footer-copyright {
+  color: #888888; /* Dezentes Grau */
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Zarte Linie über dem Text */
+  padding-top: 20px;
+  margin: 0;
+}
