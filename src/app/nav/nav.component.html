@@ -1,19 +1,27 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/">Parfüm Shop</a> 
-      
-      <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed"
-          data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" 
-          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup" [class.show]="!isMenuCollapsed">
-        <div class="navbar-nav">
-          <a class="nav-link" [routerLink]="['/']" (click)="isMenuCollapsed = true">Home</a>
-          <a class="nav-link" [routerLink]="['/table']" (click)="isMenuCollapsed = true">Table</a>
-          <a class="nav-link" [routerLink]="['/create']" (click)="isMenuCollapsed = true">Create</a>
-        </div>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-4">
+  <div class="container-fluid">
+    
+    <a class="navbar-brand fw-bold" routerLink="/" style="color: #5d4a36; font-family: 'Playfair Display', serif;">
+      Parfüm Shop
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/table">Table</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/create">Create</a>
+        </li>
+      </ul>
     </div>
+    
+  </div>
 </nav>
