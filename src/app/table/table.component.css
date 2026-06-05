@@ -1,0 +1,10 @@
+/* Hover-Effekt für Tabellenzeilen */
+tr:hover {
+  background-color: rgba(201, 168, 76, 0.05) !important;
+}
+
+/* Tabellenkopf-Schrift */
+th {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
