@@ -35,14 +35,14 @@
   "node_modules/bootstrap/dist/js/bootstrap.min.js"
 ]
  },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
+    "configurations": {
+    "production": {
+   "budgets": [
+  {
+   "type": "initial",
+   "maximumWarning": "500kB",
+    "maximumError": "1MB"
+  },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kB",
