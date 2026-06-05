@@ -5,12 +5,12 @@ import { Parfuem } from './parfuem'; // استيراد واجهة العطور �
   providedIn: 'root'
 })
 export class BackendService {
-  // رابط الباك إند الأساسي (تأكدي أن المنفذ 3000 صحيح حسب الباك إند عندك)
+  // رابط الباك إند الأساسي (تأكد أن المنفذ 3000 صحيح حسب الباك إند )
   apiUrl = 'http://localhost:3000/api';
 
   constructor() { }
 
-  // دالة جلب البيانات بالطريقة التي طلبها الدكتور (Promise & fetch)
+  // دالة جلب البيانات  (Promise & fetch)
   async getAll(): Promise<Parfuem[]> {
     let response = await fetch(this.apiUrl + '/parfuems');
     let parfuems = await response.json();
@@ -54,6 +54,6 @@ export class BackendService {
     await fetch(this.apiUrl + '/parfuems/' + id, {
       method: 'DELETE'
     });
-    console.log('تم حذف العطر بنجاح!');
+    console.log('Parfüm Erfolgreich gelöscht!');
   }
 }

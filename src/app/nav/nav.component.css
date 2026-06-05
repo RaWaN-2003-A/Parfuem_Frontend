@@ -1,0 +1,9 @@
+.nav-link {
+  color: #F5F0E8 !important;
+  font-size: 1rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #C9A84C !important;
+}

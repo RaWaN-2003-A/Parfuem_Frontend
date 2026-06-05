@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router'; // impotiert die Router anstatt href  ohne refrech 
+import { RouterLink , RouterLinkActive} from '@angular/router'; // impotiert die Router ansta
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
 export class NavComponent {
-isMenuCollapsed = true;
+isMenuCollapsed : boolean = true;
 }
