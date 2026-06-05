@@ -1,5 +1,75 @@
-<main class="d-flex align-items-center min-vh-100">
-    <div class="container text-center">
-        Welcome in Rawan_Shop!
+<main style="background-color:beige; min-height: 100vh; padding-bottom: 80px;">
+
+  <!-- Hero -->
+  <div class="text-center py-5" style="background: radial-gradient(ellipse at center, #1a1400, #0D0D0D);">
+    <p style="color: #C9A84C; letter-spacing: 4px; font-size: 0.85rem;">✦ عطور عربية فاخرة ✦</p>
+    <h1 class="display-3 fw-bold" style="color: #F5F0E8;">
+      <span style="color: #C9A84C;">  روان للعود</span> 
+    </h1>
+    <p class="lead" style="color: #9E9E9E;">تجربة عطرية فريدة من أجود أنواع العود العربي الأصيل</p>
+    <div class="mt-4 d-flex gap-3 justify-content-center flex-wrap">
+      <a routerLink="/table" class="btn btn-lg px-5"
+         style="background: linear-gradient(135deg, #C9A84C, #E8D5A3); color:rgb(167, 115, 47); font-weight: 700;">
+        Alle Parfüms entdecken
+      </a>
+      <a routerLink="/create" class="btn btn-outline-warning btn-lg px-5">
+        Neues Parfüm hinzufügen
+      </a>
     </div>
+  </div>
+
+  <!-- Features -->
+  <div class="d-flex justify-content-center gap-5 py-4 flex-wrap"
+       style="background:rgb(134, 84, 23); border-top: 1px solid rgba(201,168,76,0.3); border-bottom: 1px solid rgba(201,168,76,0.3);">
+    <div class="text-center" style="color: #9E9E9E;">
+      <i class="bi bi-patch-check-fill" style="color: #C9A84C; font-size: 1.5rem;"></i>
+      <p class="mt-1 mb-0">100% Original</p>
+    </div>
+    <div class="text-center" style="color: #9E9E9E;">
+      <i class="bi bi-truck" style="color: #C9A84C; font-size: 1.5rem;"></i>
+      <p class="mt-1 mb-0">Schneller Versand</p>
+    </div>
+    <div class="text-center" style="color: #9E9E9E;">
+      <i class="bi bi-award-fill" style="color: #C9A84C; font-size: 1.5rem;"></i>
+      <p class="mt-1 mb-0">Premium Qualität</p>
+    </div>
+    <div class="text-center" style="color: #9E9E9E;">
+      <i class="bi bi-headset" style="color: #C9A84C; font-size: 1.5rem;"></i>
+      <p class="mt-1 mb-0">Support 24/7</p>
+    </div>
+  </div>
+
+  <!-- Featured Parfüms -->
+  <div class="container mt-5" *ngIf="featuredParfuems.length > 0">
+    <h2 class="text-center mb-4" style="color: #C9A84C;">✦ Ausgewählte Parfüms ✦</h2>
+    <div class="row g-4">
+      @for (p of featuredParfuems; track p._id) {
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow"
+               style="background: #a76565; border: 1px solid rgba(201,168,76,0.2) !important; cursor:pointer;"
+               [routerLink]="['/detail', p._id]">
+            <img [src]="p.bildUrl || 'https://Bilder.unplash.com/photo-1541643600914-78b084683702?w=500'"
+                 class="card-img-top" style="height: 220px; object-fit: cover;"
+                 onerror="this.src='https://images.unsplash.com/photo-1541643600914-78b084683702?w=500'">
+            <div class="card-body">
+              <span class="badge mb-2" style="background:beige; color: #C9A84C; border: 1px solid #C9A84C;">
+                {{ p.kategorie }}
+              </span>
+              <h5 class="card-title" style="color: #F5F0E8;">{{ p.name }}</h5>
+              <p class="card-text" style="color: #9E9E9E;">{{ p.beschreibung }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold" style="color: #C9A84C; font-size: 1.1rem;">{{ p.preis }} €</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="text-center mt-4">
+      <a routerLink="/table" class="btn btn-lg px-5"
+         style="background: linear-gradient(135deg, #C9A84C, #E8D5A3); color: #0D0D0D; font-weight: 700;">
+        Alle Parfüms anzeigen
+      </a>
+    </div>
+  </div>
 </main>
