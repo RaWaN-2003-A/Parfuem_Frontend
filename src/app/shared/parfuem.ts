@@ -8,4 +8,5 @@ export interface Parfuem {
   bestandt?: number; // الكمية المتوفرة (اختياري)
   bildUrl?: string; // رابط الصورة (اختياري)
   featured?: boolean; // هل العطر مميز؟ (اختياري)
+  groesse?: string; // حجم العطر (اختياري)
 }
