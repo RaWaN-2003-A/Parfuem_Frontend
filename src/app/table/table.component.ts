@@ -14,69 +14,106 @@ import { Parfuem } from '../shared/parfuem';
 @Component({
   selector: 'app-table',
   standalone: true,
-  // CommonModule: für @if, @for
-  // RouterLink: für [routerLink] im Edit-Button
   imports: [CommonModule, RouterLink],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
 export class TableComponent implements OnInit {
-
-  // Array mit allen Parfüms aus der Datenbank
+  // Liste aller Parfüms, die aus dem Backend geladen werden.
+  // Die HTML-View zeigt diese Liste direkt an (z.B. via @for ...).
   parfuems: Parfuem[] = [];
 
-  // Das aktuell ausgewählte Parfüm (für das Löschen-Modal)
+  // Das Parfüm, das aktuell im "Löschen?"-Modal angezeigt wird.
+  // Wird in delete(id) gesetzt (damit der Name im Modal angezeigt werden kann).
   selectedParfuem!: Parfuem;
 
-  // Steuert ob das Löschen-Modal angezeigt wird
+  // Steuervariable für das Modal.
+  // - false: normale Tabellenansicht
+  // - true: Modal (Bestätigung) wird eingeblendet
   deleteStatus: boolean = false;
 
-  // BackendService per Dependency Injection
+  // BackendService per Dependency Injection.
+  // bs steht für "BackendService" und kapselt alle API-Aufrufe.
   constructor(private bs: BackendService) {}
 
-  // ngOnInit: wird beim Laden der Komponente aufgerufen
-  // Lädt alle Parfüms aus der Datenbank
+  // Angular-Lifecycle: wird einmalig aufgerufen, nachdem die Komponente initialisiert wurde.
+  // Hier holen wir die Startdaten (alle Parfüms) aus dem Backend.
   ngOnInit(): void {
     this.bs.getAll()
       .then(response => {
+        // Response enthält die Parfüms aus der Datenbank.
         this.parfuems = response;
-        console.log('parfuems in TableComponent:', this.parfuems);
+        // Hinweis fürs Debugging während der Entwicklung.
+        console.log('Geladene Parfüms:', this.parfuems);
+      })
+      .catch(err => {
+        // Wenn der API-Call fehlschlägt, loggen wir den Fehler.
+        console.error('Fehler beim Laden:', err);
       });
   }
 
-  // Wird im HTML-Modal verwendet
+  // Wird im HTML-Modal / vom Löschen-Button aufgerufen.
+  // Ablauf:
+  // 1) ID des angeklickten Parfüms prüfen
+  // 2) vollständiges Parfüm aus dem Backend holen (damit der Name/Details im Modal da sind)
+  // 3) Modal einschalten (deleteStatus = true)
   delete(id: string | undefined): void {
+    // Falls kein gültiger Parameter übergeben wurde: keine Aktion.
     if (!id) return;
+
+    // Hole das ausgewählte Parfüm anhand seiner DB-ID.
     this.bs.getOne(id)
-      .then((response: Parfuem) => {
+      .then(response => {
+        // Speichere das geladene Parfüm fürs Modal.
         this.selectedParfuem = response;
+        // Zeige das Bestätigungs-Modal.
         this.deleteStatus = true;
       })
-      .catch((err) => console.error('Fehler beim Laden des Parfüms:', err));
+      .catch(err => {
+        // Fehlerfall: Parfüm konnte nicht geladen werden.
+        console.error('Fehler beim Laden des Parfüms:', err);
+      });
   }
 
-  // Wird im HTML-Modal verwendet
-  async confirm(): Promise<void> {
-    try {
-      // BackendService hat nur delete(id), kein deleteOne()
-      const id = this.selectedParfuem?._id;
-      if (!id) return;
+  // Wird im HTML-Modal aufgerufen, wenn der Nutzer "Löschen" bestätigt.
+  // Ablauf:
+  // 1) ID des ausgewählten Parfüms ermitteln
+  // 2) delete(id) im Backend ausführen
+  // 3) danach Liste neu laden, damit die Tabelle aktuell ist
+  confirm(): void {
+    // MongoDB-ID liegt typischerweise im Feld _id.
+    // Optionales Chaining, damit der Code nicht crasht falls selectedParfuem noch nicht gesetzt wurde.
+    const id = this.selectedParfuem?._id;
+    if (!id) return;
 
-      await this.bs.delete(id);
-      this.parfuems = await this.bs.getAll();
-      this.deleteStatus = false;
-    } catch (err) {
-      console.error('Fehler beim Löschen:', err);
-    }
+    // 1) Löschen im Backend
+    this.bs.delete(id)
+      .then(() => {
+        // 2) Danach direkt die aktualisierte Liste laden.
+        return this.bs.getAll();
+      })
+      .then(response => {
+        // 3) UI aktualisieren
+        this.parfuems = response;
+        // Modal wieder schließen.
+        this.deleteStatus = false;
+      })
+      .catch(err => {
+        // Fehlerfall beim Löschen oder beim anschließenden Reload.
+        console.error('Fehler beim Löschen:', err);
+      });
   }
 
-  // cancel(): schließt das Modal ohne zu löschen
+  // Wird im HTML-Modal aufgerufen, wenn der Nutzer "Abbrechen" wählt.
+  // Keine Backend-Aktion, nur Modal schließen.
   cancel(): void {
     this.deleteStatus = false;
   }
 
-  // Abbrechen(): entspricht cancel() (falls HTML diese Methode aufruft)
+  // Fallback (falls irgendwo noch Abbrechen() verwendet wird).
   Abbrechen(): void {
     this.cancel();
   }
 }
+
+

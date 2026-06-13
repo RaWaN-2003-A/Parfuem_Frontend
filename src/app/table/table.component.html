@@ -1,58 +1,67 @@
-<!-- =============================================
-     TABLE COMPONENT — Liste aller Parfüms
-     Zeigt alle Parfüms aus der Datenbank als Tabelle
-     Funktionen: Anzeigen, Bearbeiten, Löschen
-     ============================================= -->
+<!-- ================================================
+     TABLE COMPONENT – Übersicht aller Parfüms
+     Zeigt alle Parfüms aus MongoDB in einer Tabelle.
+     Enthält: Bild, Name, Marke, Kategorie, Preis,
+              Größe, Bearbeiten-Button, Löschen-Button
+     Löschen erfolgt über ein Bestätigungs-Modal.
+     ================================================ -->
 
-<!-- Löschen-Modal: erscheint nur wenn deleteStatus = true -->
+<!-- MODAL: Wird angezeigt wenn deleteStatus = true -->
 <!-- deleteStatus wird in table.component.ts gesetzt -->
 @if(deleteStatus) {
 
-  <!-- Dunkler Hintergrund hinter dem Modal -->
+  <!-- Halbtransparenter dunkler Hintergrund hinter dem Modal -->
   <div class="modal d-block" tabindex="-1"
-       style="background: rgba(0,0,0,0.75);">
+       style="background: blanchedalmond;">
 
     <div class="modal-dialog modal-dialog-centered">
+
+      <!-- Modal-Fenster mit dunklem Design -->
       <div class="modal-content"
            style="background: #1A1A1A;
                   border: 1px solid #C9A84C;
                   color: #F5F0E8;">
 
-        <!-- Modal-Kopfzeile -->
+        <!-- Modal-Kopfzeile mit Warnsymbol -->
         <div class="modal-header"
              style="border-bottom: 1px solid rgba(201,168,76,0.3);">
           <h5 class="modal-title">
+            <!-- Warnsymbol aus Bootstrap Icons -->
             <i class="bi bi-exclamation-triangle-fill me-2"
                style="color: #C9A84C;"></i>
             Wirklich löschen?
           </h5>
-          <!-- X-Button oben rechts -->
-          <button type="button" class="btn-close btn-close-white"
+          <!-- Schließen-Button oben rechts im Modal -->
+          <button type="button"
+                  class="btn-close btn-close-white"
                   (click)="cancel()">
           </button>
         </div>
 
-        <!-- Modal-Inhalt: zeigt den Namen des zu löschenden Parfüms -->
+        <!-- Modal-Inhalt: Name des zu löschenden Parfüms -->
         <div class="modal-body">
           Möchten Sie das Parfüm
+          <!-- selectedParfuem: das aktuell ausgewählte Parfüm -->
           <strong style="color: #C9A84C;">
-            {{ selectedParfuem?.name }}
+            {{ selectedParfuem.name || '' }}
           </strong>
           wirklich löschen?
         </div>
 
-        <!-- Modal-Buttons: Abbrechen oder Löschen bestätigen -->
+        <!-- Modal-Buttons -->
         <div class="modal-footer"
              style="border-top: 1px solid rgba(201,168,76,0.3);">
 
-          <!-- Abbrechen: schließt Modal ohne zu löschen -->
-          <button type="button" class="btn btn-secondary"
+          <!-- Abbrechen: schließt Modal, nichts wird gelöscht -->
+          <button type="button"
+                  class="btn btn-secondary"
                   (click)="cancel()">
             <i class="bi bi-x-circle me-1"></i> Abbrechen
           </button>
 
-          <!-- Bestätigen: löscht das Parfüm aus der DB -->
-          <button type="button" class="btn btn-danger"
+          <!-- Bestätigen: ruft confirm() auf → löscht aus DB -->
+          <button type="button"
+                  class="btn btn-danger"
                   (click)="confirm()">
             <i class="bi bi-trash me-1"></i> Löschen
           </button>
@@ -63,19 +72,20 @@
   </div>
 }
 
-<!-- Tabellen-Ansicht: erscheint wenn kein Modal aktiv ist -->
+<!-- TABELLEN-ANSICHT: wird angezeigt wenn kein Modal aktiv -->
 @else {
 
-  <div style="background-color:be;
+  <div style="background-color: #0D0D0D;
               min-height: 100vh;
               padding: 40px 24px 80px;">
     <div class="container">
 
-      <!-- Seitentitel + Button zum Hinzufügen -->
+      <!-- Seitenüberschrift + Button für neues Parfüm -->
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold mb-0" style="color: #C9A84C;">
           ✦ Verfügbare Parfüms ✦
         </h2>
+        <!-- Navigiert zur Create-Seite -->
         <a routerLink="/create" class="btn fw-bold"
            style="background: linear-gradient(135deg, #C9A84C, #E8D5A3);
                   color: #0D0D0D;">
@@ -83,41 +93,28 @@
         </a>
       </div>
 
-      <!-- Tabellen-Container mit horizontalem Scrollen auf kleinen Bildschirmen -->
+      <!-- Tabellen-Card mit dunklem Hintergrund -->
       <div class="card shadow-sm"
            style="background: #1A1A1A;
                   border: 1px solid rgba(201,168,76,0.2);">
 
+        <!-- Horizontales Scrollen auf kleinen Bildschirmen -->
         <div class="table-responsive">
+
           <table class="table table-hover align-middle mb-0"
                  style="color: #F5F0E8;">
 
-            <!-- Tabellenkopf -->
+            <!-- TABELLENKOPF -->
             <thead style="background: #242424;
                           border-bottom: 2px solid #C9A84C;">
               <tr>
-                <!-- Laufende Nummer -->
                 <th style="color: #C9A84C;">#</th>
-
-                <!-- Produktbild Spalte -->
                 <th style="color: #C9A84C;">Bild</th>
-
-                <!-- Parfümname -->
                 <th style="color: #C9A84C;">Parfümname</th>
-
-                <!-- Marke -->
                 <th style="color: #C9A84C;">Marke</th>
-
-                <!-- Kategorie -->
                 <th style="color: #C9A84C;">Kategorie</th>
-
-                <!-- Preis -->
                 <th style="color: #C9A84C;">Preis</th>
-
-                <!-- Größe -->
                 <th style="color: #C9A84C;">Größe</th>
-
-                <!-- Aktionen: Edit + Löschen -->
                 <th style="color: #C9A84C;">Bearbeiten</th>
                 <th style="color: #C9A84C;">Löschen</th>
               </tr>
@@ -125,89 +122,102 @@
 
             <tbody>
 
-              <!-- Schleife über alle Parfüms aus der Datenbank -->
-              <!-- track p._id: Angular nutzt die ID für effizientes Re-Rendering -->
-              <!-- let i = $index: gibt die laufende Nummer -->
+              <!-- SCHLEIFE: für jedes Parfüm eine Tabellenzeile -->
+              <!-- track p._id: Angular nutzt die MongoDB-ID zur Optimierung -->
+              <!-- let i = $index: laufende Nummer ab 0 (wir zeigen i+1) -->
               @for (p of parfuems; track p._id; let i = $index) {
 
-                <tr style="border-bottom: 1px solid rgba(201,168,76,0.1);">
+                <tr style="border-bottom: 1px solid rgba(201,168,76,0.08);">
 
                   <!-- Laufende Nummer (beginnt bei 1) -->
                   <td style="color: #9E9E9E;">{{ i + 1 }}</td>
 
-                  <!-- Produktbild aus assets/Bilder/ -->
-                  <!-- [src]: Bildpfad aus der Datenbank (bildUrl) -->
-                  <!-- onerror: Fallback-Bild falls Datei nicht gefunden -->
+                  <!-- PRODUKTBILD -->
+                  <!-- [src]: lädt Bild aus assets/Bilder/ anhand bildUrl aus DB -->
+                  <!-- Fallback 1: leere bildUrl → erstes verfügbares Bild -->
+                  <!-- Fallback 2 (onerror): Bild nicht gefunden → Ersatzbild -->
                   <td>
-                      <img
-                      [src]="p.bildUrl || 'assets/Bilder/Waha_Oud.png'"
-                      [alt]="p.name"
-                      style="width: 55px;
-                             height: 55px;
-                             object-fit: cover;
-                             border-radius: 4px;
-                             border: 1px solid rgba(201,168,76,0.3);"
-                      onerror="this.src='assets/Bilder/Waha_Oud.png'">
+                    <img
+                      [src]="p.bildUrl "
+                      alt="{{ p.name }}"
+                      style="width: 60px; height: 60px; object-fit: cover ;border-radius: 4px;"
+                      onerror="this.src='https://images.unsplash.com/photo-1541643600914-78b084683702?w=500'">
                   </td>
 
-                  <!-- Name des Parfüms -->
+                  <!-- PARFÜMNAME fett -->
                   <td><strong>{{ p.name }}</strong></td>
 
-                  <!-- Marke als Badge -->
+                  <!-- MARKE als grauer Badge -->
                   <td>
                     <span class="badge bg-secondary">{{ p.marke }}</span>
                   </td>
 
-                  <!-- Kategorie als gold-farbiger Badge -->
+                  <!-- KATEGORIE als goldener Badge -->
+                  <!-- Wird nur angezeigt wenn kategorie vorhanden -->
                   <td>
-                    <span class="badge"
-                          style="background: rgba(201,168,76,0.15);
-                                 color: #C9A84C;
-                                 border: 1px solid #C9A84C;">
-                      {{ p.kategorie }}
-                    </span>
+                    @if(p.kategorie) {
+                      <span class="badge"
+                            style="background: rgba(201,168,76,0.15);
+                                   color: #C9A84C;
+                                   border: 1px solid #C9A84C;
+                                   font-size: 0.8rem;">
+                        {{ p.kategorie }}
+                      </span>
+                    } @else {
+                      <!-- Fallback wenn keine Kategorie gesetzt -->
+                      <span style="color: #9E9E9E; font-size: 0.8rem;">–</span>
+                    }
                   </td>
 
-                  <!-- Preis in grün und fett -->
+                  <!-- PREIS in Gold und fett -->
                   <td>
                     <span class="fw-bold" style="color: #C9A84C;">
                       {{ p.preis }} €
                     </span>
                   </td>
 
-                  <!-- Größe (z.B. 50ml) -->
-                  <td style="color: #9E9E9E;">{{ p.groesse }}</td>
+                  <!-- GRÖßE z.B. 50ml -->
+                  <td style="color: #9E9E9E;">
+                    {{ p.groesse || '–' }}
+                  </td>
 
-                  <!-- Edit-Button: navigiert zur Detail-Seite mit der ID -->
+                  <!-- BEARBEITEN-BUTTON -->
+                  <!-- [routerLink]: navigiert zu /detail/{id} mit MongoDB-ID -->
                   <td>
                     <a [routerLink]="['/detail', p._id]"
                        class="btn btn-sm btn-outline-warning"
-                       title="Bearbeiten">
+                       title="Parfüm bearbeiten">
                       <i class="bi bi-pencil-square"></i>
                     </a>
                   </td>
 
-                  <!-- Löschen-Button: öffnet das Modal zur Bestätigung -->
-                  <!-- (click)="delete(p._id)": ruft delete()-Funktion in ts auf -->
+                  <!-- LÖSCHEN-BUTTON -->
+                  <!-- (click): ruft delete() in table.component.ts auf -->
+                  <!-- Öffnet das Bestätigungs-Modal (deleteStatus = true) -->
                   <td>
                     <button class="btn btn-sm btn-outline-danger"
                             (click)="delete(p._id)"
-                            title="Löschen">
+                            title="Parfüm löschen">
                       <i class="bi bi-trash"></i>
                     </button>
                   </td>
 
                 </tr>
               }
+              <!-- Ende @for-Schleife -->
 
-              <!-- Leere Tabelle: wird angezeigt wenn keine Parfüms in der DB -->
+              <!-- LEERE TABELLE: angezeigt wenn keine Parfüms in DB -->
               @if(parfuems.length === 0) {
                 <tr>
-                  <td colspan="9" class="text-center p-5"
+                  <td colspan="9"
+                      class="text-center p-5"
                       style="color: #9E9E9E;">
+                    <!-- Inbox-Symbol als visueller Hinweis -->
                     <i class="bi bi-inbox d-block mb-2"
-                       style="font-size: 2rem; color: rgba(201,168,76,0.3);"></i>
-                    Keine Parfüms gefunden.
+                       style="font-size: 2.5rem;
+                              color: rgba(201,168,76,0.3);">
+                    </i>
+                    Keine Parfüms gefunden.<br>
                     Bitte Backend-Verbindung prüfen!
                   </td>
                 </tr>
@@ -224,4 +234,4 @@
     </div>
   </div>
 }
-<!-- Ende @else -->
+<!-- Ende @else (Tabellen-Ansicht) -->
