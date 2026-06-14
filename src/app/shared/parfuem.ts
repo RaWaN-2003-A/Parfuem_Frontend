@@ -3,10 +3,10 @@ export interface Parfuem {
   name: string;     // اسم العطر
   marke: string;    // الماركة
   preis: number;    // السعر
-  kategorie? : string; // الفئة (اختياري)
-  beschreibung?: string; // الوصف (اختياري)
-  bestandt?: number; // الكمية المتوفرة (اختياري)
-  bildUrl?: string; // رابط الصورة (اختياري)
-  featured?: boolean; // هل العطر مميز؟ (اختياري)
-  groesse?: string; // حجم العطر (اختياري)
+  kategorie? : string; // الفئة)
+  beschreibung?: string; // الوصف 
+  bestandt?: number; // الكمية المتوفرة 
+  bildUrl?: string; // رابط الصورة 
+  featured?: boolean; // هل العطر مميز؟ 
+  groesse?: string; // حجم العطر 
 }

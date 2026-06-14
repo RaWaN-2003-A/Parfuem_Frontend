@@ -1,3 +1,6 @@
-main {
-  font-family: 'Tajawal', 'Segoe UI', sans-serif;
+/* Hover-Effekt für die Parfüm-Karten auf der Startseite */
+.parfuem-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(201, 168, 76, 0.2) !important;
+  border-color: rgba(201, 168, 76, 0.6) !important;
 }

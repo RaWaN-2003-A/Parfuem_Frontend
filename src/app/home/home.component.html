@@ -1,75 +1,236 @@
-<main style="background-color:beige; min-height: 100vh; padding-bottom: 80px;">
+<!-- ================================================
+     HOME COMPONENT – Startseite des Parfüm-Shops
+     Aufbau:
+     1. Navbar (in app.component)
+     2. Hero-Bereich mit Video-Hintergrund
+     3. Features-Streifen (4 Vorteile)
+     4. Ausgewählte Parfüms (3 Karten)
+     5. Über uns / Footer-Bereich
+     ================================================ -->
 
-  <!-- Hero -->
-  <div class="text-center py-5" style="background: radial-gradient(ellipse at center, #1a1400, #0D0D0D);">
-    <p style="color: #C9A84C; letter-spacing: 4px; font-size: 0.85rem;">✦ عطور عربية فاخرة ✦</p>
-    <h1 class="display-3 fw-bold" style="color: #F5F0E8;">
-      <span style="color: #C9A84C;">  روان للعود</span> 
-    </h1>
-    <p class="lead" style="color: #9E9E9E;">تجربة عطرية فريدة من أجود أنواع العود العربي الأصيل</p>
-    <div class="mt-4 d-flex gap-3 justify-content-center flex-wrap">
-      <a routerLink="/table" class="btn btn-lg px-5"
-         style="background: linear-gradient(135deg, #C9A84C, #E8D5A3); color:rgb(167, 115, 47); font-weight: 700;">
-        Alle Parfüms entdecken
-      </a>
-      <a routerLink="/create" class="btn btn-outline-warning btn-lg px-5">
-        Neues Parfüm hinzufügen
-      </a>
+<div style="background-color: #0D0D0D; min-height: 100vh; padding-bottom: 0;">
+
+  <!-- ============================================
+       1. HERO-BEREICH MIT VIDEO
+       Das Video läuft automatisch im Hintergrund.
+       Der Text liegt über dem Video (z-index).
+       ============================================ -->
+  <div class="position-relative overflow-hidden"
+       style="height: 88vh; min-height: 500px;">
+
+    <!-- Hintergrundvideo aus assets/videos/ -->
+    <!-- autoplay: startet automatisch -->
+    <!-- muted: kein Ton (Pflicht für autoplay im Browser) -->
+    <!-- loop: wiederholt sich endlos -->
+    <!-- playsinline: wichtig für mobile Geräte -->
+    <video
+      class="position-absolute w-100 h-100"
+      style="object-fit: cover; top: 0; left: 0; z-index: 0;"
+      autoplay
+      muted
+      loop
+      playsinline>
+      <source src="assets/videos/hero.mp4" type="video/mp4">
+    </video>
+
+    <!-- Dunkle Überlagerung damit der Text lesbar bleibt -->
+    <div class="position-absolute w-100 h-100"
+         style="background: rgba(0,0,0,0.50);
+                z-index: 1; top: 0; left: 0;">
+    </div>
+
+    <!-- Hero-Text zentriert über dem Video -->
+    <div class="position-relative d-flex flex-column
+                align-items-center justify-content-center
+                h-100 text-center px-3"
+         style="z-index: 2;">
+
+      <!-- Kleiner dekorativer Text -->
+      <p style="color: #C9A84C; letter-spacing: 4px; font-size: 0.85rem;">
+        ✦ عطور عربية فاخرة ✦
+      </p>
+
+      <!-- Haupttitel -->
+      <h1 class="display-2 fw-bold mb-3"
+          style="color: #F5F0E8;
+                 text-shadow: 2px 2px 8px rgba(0,0,0,0.8);">
+        <span style="color: #C9A84C;">روان</span> للعود
+      </h1>
+
+      <!-- Untertitel -->
+      <p class="lead mb-4"
+         style="color: #E0D9CC;
+                max-width: 600px;
+                text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">
+        تجربة عطرية فريدة من أجود أنواع العود العربي الأصيل
+      </p>
+
+      <!-- Navigations-Buttons -->
+      <div class="d-flex gap-3 flex-wrap justify-content-center">
+
+        <!-- Button zur Parfüm-Tabelle -->
+        <a routerLink="/table"
+           class="btn btn-lg px-5 fw-bold"
+           style="background: linear-gradient(135deg, #C9A84C, #E8D5A3);
+                  color: #0D0D0D;">
+          <i class="bi bi-grid-3x3-gap me-2"></i>Alle Parfüms entdecken
+        </a>
+
+        <!-- Button zum Erstellen eines neuen Parfüms -->
+        <a routerLink="/create"
+           class="btn btn-outline-warning btn-lg px-5">
+          <i class="bi bi-plus-circle me-2"></i>Neues Parfüm hinzufügen
+        </a>
+
+      </div>
     </div>
   </div>
+  <!-- Ende Hero -->
 
-  <!-- Features -->
-  <div class="d-flex justify-content-center gap-5 py-4 flex-wrap"
-       style="background:rgb(134, 84, 23); border-top: 1px solid rgba(201,168,76,0.3); border-bottom: 1px solid rgba(201,168,76,0.3);">
-    <div class="text-center" style="color: #9E9E9E;">
-      <i class="bi bi-patch-check-fill" style="color: #C9A84C; font-size: 1.5rem;"></i>
-      <p class="mt-1 mb-0">100% Original</p>
-    </div>
-    <div class="text-center" style="color: #9E9E9E;">
-      <i class="bi bi-truck" style="color: #C9A84C; font-size: 1.5rem;"></i>
-      <p class="mt-1 mb-0">Schneller Versand</p>
-    </div>
-    <div class="text-center" style="color: #9E9E9E;">
-      <i class="bi bi-award-fill" style="color: #C9A84C; font-size: 1.5rem;"></i>
-      <p class="mt-1 mb-0">Premium Qualität</p>
-    </div>
-    <div class="text-center" style="color: #9E9E9E;">
-      <i class="bi bi-headset" style="color: #C9A84C; font-size: 1.5rem;"></i>
-      <p class="mt-1 mb-0">Support 24/7</p>
-    </div>
-  </div>
+  <!-- ============================================
+       3. AUSGEWÄHLTE PARFÜMS (max. 3 Karten)
+       Nur Parfüms mit featured = true werden angezeigt
+       @if und @for = neue Angular 17 Syntax (kein *ngIf)
+       ============================================ -->
+  @if(featuredParfuems.length > 0) {
+    <div class="container py-5">
 
-  <!-- Featured Parfüms -->
-  <div class="container mt-5" *ngIf="featuredParfuems.length > 0">
-    <h2 class="text-center mb-4" style="color: #C9A84C;">✦ Ausgewählte Parfüms ✦</h2>
-    <div class="row g-4">
-      @for (p of featuredParfuems; track p._id) {
-        <div class="col-md-4">
-          <div class="card h-100 border-0 shadow"
-               style="background: #a76565; border: 1px solid rgba(201,168,76,0.2) !important; cursor:pointer;"
-               [routerLink]="['/detail', p._id]">
-            <img [src]="p.bildUrl || 'https://Bilder.unplash.com/photo-1541643600914-78b084683702?w=500'"
-                 class="card-img-top" style="height: 220px; object-fit: cover;"
-                 onerror="this.src='https://images.unsplash.com/photo-1541643600914-78b084683702?w=500'">
-            <div class="card-body">
-              <span class="badge mb-2" style="background:beige; color: #C9A84C; border: 1px solid #C9A84C;">
-                {{ p.kategorie }}
-              </span>
-              <h5 class="card-title" style="color: #F5F0E8;">{{ p.name }}</h5>
-              <p class="card-text" style="color: #9E9E9E;">{{ p.beschreibung }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="fw-bold" style="color: #C9A84C; font-size: 1.1rem;">{{ p.preis }} €</span>
+      <!-- Abschnittstitel -->
+      <h2 class="text-center fw-bold mb-4"
+          style="color: #C9A84C;">
+        ✦ Ausgewählte Parfüms ✦
+      </h2>
+
+      <!-- Bootstrap Grid: 3 Karten nebeneinander -->
+      <div class="row g-4">
+
+        <!-- Schleife: für jedes featured Parfüm eine Karte -->
+        <!-- track p._id: Angular nutzt MongoDB-ID für Optimierung -->
+        @for (p of featuredParfuems; track p._id) {
+
+          <div class="col-md-4">
+
+            <!-- Parfüm-Karte — klickbar, führt zur Detail-Seite -->
+            <div class="card h-100 border-0 parfuem-card"
+                 [routerLink]="['/detail', p._id]"
+                 style="background: #692f56;
+                        border: 1px solid rgba(201,168,76,0.25) !important;
+                        cursor: pointer;
+                        transition: transform 0.3s, box-shadow 0.3s;
+                        border-radius: 12px;
+                        overflow: hidden;">
+
+              <!-- Produktbild aus der Datenbank (bildUrl) -->
+              <!-- onerror: Fallback falls Bild nicht geladen werden kann -->
+              <img
+                [src]="p.bildUrl"
+                [alt]="p.name"
+                class="card-img-top"
+                style="height: 260px; object-fit: cover;"
+                onerror="this.onerror=null; this.src='assets/Bilder/Atheer_Oud.png';">
+
+              <!-- Karten-Inhalt -->
+              <div class="card-body p-4">
+
+                <!-- Kategorie-Badge -->
+                @if(p.kategorie) {
+                  <span class="badge mb-2"
+                        style="background: rgba(201,168,76,0.15);
+                               color: #C9A84C;
+                               border: 1px solid #C9A84C;">
+                    {{ p.kategorie }}
+                  </span>
+                }
+
+                <!-- Parfümname -->
+                <h5 class="card-title fw-bold"
+                    style="color: #F5F0E8;">
+                  {{ p.name }}
+                </h5>
+
+                <!-- Kurze Beschreibung (max. 90 Zeichen) -->
+                <p class="card-text"
+                   style="color: #9E9E9E; font-size: 0.9rem;">
+                  {{ p.beschreibung | slice:0:90 }}...
+                </p>
+
+                <!-- Preis und Größe -->
+                <div class="d-flex justify-content-between
+                            align-items-center mt-3">
+                  <span class="fw-bold"
+                        style="color: #C9A84C; font-size: 1.15rem;">
+                    {{ p.preis }} €
+                  </span>
+                  <span style="color: #9E9E9E; font-size: 0.85rem;">
+                    {{ p.groesse }}
+                  </span>
+                </div>
+
+                <!-- In den Warenkorb Button -->
+                <!-- (click).stopPropagation(): verhindert Navigation zur Detail-Seite -->
+                <button class="btn w-100 mt-3 fw-bold"
+                        style="background: linear-gradient(135deg, #C9A84C, #E8D5A3);
+                               color: #0D0D0D;"
+                        (click)="$event.stopPropagation()">
+                  <i class="bi bi-cart-plus me-2"></i>In den Warenkorb
+                </button>
+
               </div>
             </div>
+
           </div>
-        </div>
-      }
+        }
+        <!-- Ende @for -->
+
+      </div>
+      <!-- Ende row -->
+
+      <!-- Button zur vollständigen Liste -->
+      <div class="text-center mt-5">
+        <a routerLink="/table"
+           class="btn btn-lg px-5 fw-bold"
+           style="background: linear-gradient(135deg, #C9A84C, #E8D5A3);
+                  color: #0D0D0D;">
+          Alle Parfüms anzeigen
+          <i class="bi bi-arrow-left ms-2"></i>
+        </a>
+      </div>
+
     </div>
-    <div class="text-center mt-4">
-      <a routerLink="/table" class="btn btn-lg px-5"
-         style="background: linear-gradient(135deg, #C9A84C, #E8D5A3); color: #0D0D0D; font-weight: 700;">
-        Alle Parfüms anzeigen
-      </a>
+  }
+  <!-- Ende @if featured -->
+
+
+  <!-- ============================================
+       4. FEATURES NOCHMAL (unter den Karten)
+       Erscheint direkt über dem Footer
+       ============================================ -->
+  <div class="d-flex justify-content-center gap-5 py-4 flex-wrap mt-3"
+       style="background: #1A1A1A;
+              border-top: 1px solid rgba(201,168,76,0.2);">
+
+    <div class="text-center" style="color: #9E9E9E;">
+      <i class="bi bi-patch-check-fill d-block mb-1"
+         style="color: #C9A84C; font-size: 1.5rem;"></i>
+      100% Original
     </div>
+    <div class="text-center" style="color: #9E9E9E;">
+      <i class="bi bi-truck d-block mb-1"
+         style="color: #C9A84C; font-size: 1.5rem;"></i>
+      Schneller Versand
+    </div>
+    <div class="text-center" style="color: #9E9E9E;">
+      <i class="bi bi-award-fill d-block mb-1"
+         style="color: #C9A84C; font-size: 1.5rem;"></i>
+      Premium Qualität
+    </div>
+    <div class="text-center" style="color: #9E9E9E;">
+      <i class="bi bi-headset d-block mb-1"
+         style="color: #C9A84C; font-size: 1.5rem;"></i>
+      Support 24/7
+    </div>
+
   </div>
-</main>
+
+</div>
+<!-- Ende Home Page -->

@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // مهم جداً للتعامل مع النماذج (Forms)
-import { Router } from '@angular/router'; // للتحويل لصفحة الجدول بعد الإضافة
+import { FormsModule,FormControl, Validators } from '@angular/forms'; // مهم جداً للتعامل مع النماذج (Forms)
+import { Router, RouterLink } from '@angular/router'; // للتحويل لصفحة الجدول بعد الإضافة
 import { BackendService } from '../shared/backend.service';
 import { Parfuem } from '../shared/parfuem';
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [CommonModule, FormsModule], // إضافة FormsModule هنا
+  imports: [CommonModule, FormsModule, RouterLink], // إضافة FormsModule هنا
   templateUrl: './create.component.html',
   styleUrl: './create.component.css'
 })
 export class CreateComponent {
   // كائن عطر فارغ لنربطه بحقول الإدخال في الـ HTML
+  saved: boolean = false; // für die Anzeige einer Erfolgsmeldung nach dem Speichern
+  savedParfuem!: Parfuem; // um das gerade gespeicherte Parfüm anzuzeigen (z.B. Name in der Erfolgsmeldung)
   neuesParfuem: Parfuem = {
     name: '',
     marke: '',

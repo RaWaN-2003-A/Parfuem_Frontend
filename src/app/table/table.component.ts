@@ -111,7 +111,7 @@ export class TableComponent implements OnInit {
   }
 
   // Fallback (falls irgendwo noch Abbrechen() verwendet wird).
-  Abbrechen(): void {
+  Abbrechen(): void {  // Auf deutsch, damit es im HTML-Template direkt aufgerufen werden kann.
     this.cancel();
   }
 }

@@ -40,7 +40,7 @@ export class BackendService {
   // 2. دالة لإرسال التعديلات الجديدة للباك إند (طريقة PUT)
   async update(id: string, parfuem: Parfuem): Promise<Parfuem> {
     let response = await fetch(this.apiUrl + '/parfuems/' + id, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -54,6 +54,6 @@ export class BackendService {
     await fetch(this.apiUrl + '/parfuems/' + id, {
       method: 'DELETE'
     });
-    console.log('Parfüm Erfolgreich gelöscht!');
+    console.log('Parfüm Erfolgreich gelöscht!',id );
   }
 }
