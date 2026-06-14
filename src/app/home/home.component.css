@@ -1,6 +1,47 @@
-/* Hover-Effekt für die Parfüm-Karten auf der Startseite */
+/* =============================================
+   HOME COMPONENT – Globale Stile für die Startseite
+   Farbschema: Beige, Rosa, Gold (hell & elegant)
+   ============================================= */
+
+/* Grundfarben der Seite */
+:root {
+  --beige: #F5ECD7;
+  --beige-dark: #EAD9C0;
+  --rose: #C084A0;
+  --rose-light: #E8B4C8;
+  --gold: #B8860B;
+  --gold-light: #D4A843;
+  --text-dark: #3D2B1F;
+  --text-mid: #6B4C3B;
+  --white: #FFFFFF;
+}
+
+/* Hover-Effekt für die Parfüm-Karten */
+.parfuem-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
 .parfuem-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 40px rgba(201, 168, 76, 0.2) !important;
-  border-color: rgba(201, 168, 76, 0.6) !important;
+  transform: translateY(-8px) !important;
+  box-shadow: 0 16px 40px rgba(192, 132, 160, 0.35) !important;
+}
+
+/* Gold-Button Hover */
+.btn-gold:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(184, 134, 11, 0.4);
+}
+
+/* Video-Container */
+.hero-video-container {
+  height: 88vh;
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Falls Video nicht lädt: Hintergrundbild als Fallback */
+.hero-fallback {
+  background: linear-gradient(135deg, #EAD9C0 0%, #C084A0 50%, #B8860B 100%);
 }

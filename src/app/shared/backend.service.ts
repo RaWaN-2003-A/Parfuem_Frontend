@@ -39,13 +39,19 @@ export class BackendService {
 
   // 2. دالة لإرسال التعديلات الجديدة للباك إند (طريقة PUT)
   async update(id: string, parfuem: Parfuem): Promise<Parfuem> {
-    let response = await fetch(this.apiUrl + '/parfuems/' + id, {
-      method: 'PATCH',
+    const response = await fetch(this.apiUrl + '/parfuems/' + id, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(parfuem)
     });
+
+    if (!response.ok) {
+      const text = await response.text().catch(() => '');
+      throw new Error(`Update failed: ${response.status} ${response.statusText} ${text}`);
+    }
+
     return await response.json();
   }
 
