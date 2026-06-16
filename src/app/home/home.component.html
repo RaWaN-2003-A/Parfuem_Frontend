@@ -2,11 +2,10 @@
      HOME COMPONENT – Startseite von روان للعود
      Aufbau der Seite (von oben nach unten):
      1. Hero-Bereich mit Video-Hintergrund
-     2. Features-Streifen (4 Vorteile)
-     3. Ausgewählte Parfüms (3 Karten, featured=true)
-     4. Kollektion-Banner mit Bild
-     5. Kategorie-Pyramide
-     6. Features-Streifen (wiederholt vor Footer)
+     2. Ausgewählte Parfüms (3 Karten, featured=true)
+     3. Kollektion-Banner mit Bild
+     4. Kategorie-Pyramide
+     5. Features-Streifen ( vor Footer)
      ================================================ -->
 
 <div style="background-color: #F5ECD7; min-height: 100vh;">
@@ -21,17 +20,18 @@
        ============================================ -->
   <div class="hero-video-container hero-fallback">
 
-    <!-- Lokales Video aus src/assets/videos/hero.mp4 -->
+    <!-- Lokales Video aus src/assets/Bilder/videos/hero.mp4 -->
     <video
       #heroVideo
-       class="position-absolute w-100 h-100"
+       class="position-absolute w-100 h-100" 
       style="object-fit: cover; top: 0; left: 0; z-index: 0;"
       autoplay
       muted
       loop
       playsinline
       [muted]="true">
-      <!-- Videodatei muss in src/assets/videos/hero.mp4 liegen -->
+      <!-- Video füllt den gesamten Container -->
+      <!-- Videodatei muss in src/assets/Bilder/videos/hero.mp4 liegen -->
       <source src="assets/Bilder/videos/hero.mp4 " type="video/mp4">
     </video>
 
@@ -80,7 +80,7 @@
     <!-- Ende Hero-Bereich -->
 
   <!-- ============================================
-       3. AUSGEWÄHLTE PARFÜMS (Featured Products)
+       2. AUSGEWÄHLTE PARFÜMS (Featured Products)
        @if: neue Angular-Syntax, prüft ob Array nicht leer
        @for: Schleife über die featured Parfüms (max. 3)
        track p._id: Angular nutzt MongoDB-ID zur Optimierung
@@ -207,7 +207,7 @@
 
 
   <!-- ============================================
-       4. KOLLEKTION-BANNER
+       3. KOLLEKTION-BANNER
        Zeigt das Bild Kollektion.png als breites Banner
        mit Text darüber (ähnlich einem Hero-Banner)
        ============================================ -->
@@ -253,7 +253,7 @@
 
 
   <!-- ============================================
-       5. KATEGORIE-PYRAMIDE (Duft-Pyramide)
+       4. KATEGORIE-PYRAMIDE (Duft-Pyramide)
        Zeigt das Bild Kategorie.png mit Erklärungstext
        Klassisches Parfüm-Konzept: Top, Herz, Basis-Noten
        ============================================ -->
@@ -365,7 +365,7 @@
 
 
   <!-- ============================================
-       6. FEATURES-STREIFEN VOR DEM FOOTER
+       5. FEATURES-STREIFEN VOR DEM FOOTER
        Wiederholung der 4 Vorteile über dem Footer
        ============================================ -->
   <div class="d-flex justify-content-center gap-5 py-4 flex-wrap"
