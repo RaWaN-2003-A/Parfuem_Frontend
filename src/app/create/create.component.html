@@ -1,22 +1,306 @@
-<div class="luxury-3d-card">
-  
-  <h3 class="title-lux">Neues Parfüm hinzufügen ➕</h3>
-  
-  <form (ngSubmit)="speichern()" class="d-flex flex-column">
-    
-    <label for="name" class="form-label mb-1 ms-1 text-mutedSmall">Parfümname</label>
-    <input type="text" id="name" class="form-control input-lux" name="name" [(ngModel)]="neuesParfuem.name" required placeholder="z.B. Chanel No. 5">
+<!-- ================================================
+     CREATE COMPONENT – Neues Parfüm hinzufügen
+     Formular mit Bootstrap-Validierung
+     Nach dem Speichern: Toast-Nachricht erscheint
+     Danach: Weiterleitung zur Tabellen-Seite (/table)
+     ================================================ -->
 
-    <label for="marke" class="form-label mb-1 ms-1 text-mutedSmall">Marke</label>
-    <input type="text" id="marke" class="form-control input-lux" name="marke" [(ngModel)]="neuesParfuem.marke" required placeholder="z.B. Chanel">
+<div style="background-color: #F5ECD7; min-height: 100vh; padding: 40px 0 80px;">
 
-    <label for="preis" class="form-label mb-1 ms-1 text-mutedSmall">Preis (€)</label>
-    <input type="number" id="preis" class="form-control input-lux" name="preis" [(ngModel)]="neuesParfuem.preis" required>
+  <!-- ERFOLGS-TOAST: erscheint nach erfolgreichem Speichern -->
+  <!-- saved = true wird in create.component.ts gesetzt -->
+  @if(saved) {
+    <div class="position-fixed top-50 start-50 translate-middle"
+         style="z-index: 9999; width: 420px;">
 
-    <div class="d-flex gap-2 mt-2">
-      <button type="submit" class="btn btn-save-lux flex-grow-1">Speichern (حفظ)</button>
-      <a routerLink="/table" class="btn btn-cancel-lux">Abbrechen</a>
+      <div class="toast show p-0"
+           style="background: white;
+                  border: 2px solid #B8860B;
+                  border-radius: 12px;
+                  box-shadow: 0 8px 30px rgba(184,134,11,0.25);
+                  width: 100%;">
+
+        <!-- Toast-Kopfzeile -->
+        <div class="toast-header px-4 py-3"
+             style="background: linear-gradient(135deg, #B8860B, #D4A843);
+                    border-radius: 10px 10px 0 0;
+                    border: none;">
+          <i class="bi bi-check-circle-fill me-2 text-white"></i>
+          <strong class="text-white">Erfolgreich gespeichert!</strong>
+        </div>
+
+        <!-- Toast-Inhalt: zeigt den Namen des gespeicherten Parfüms -->
+        <div class="toast-body px-4 py-3">
+          <p style="color: #3D2B1F;">
+            Das Parfüm
+            <!-- savedParfuem: gespeichertes Objekt aus der DB -->
+            <strong style="color: #B8860B;">{{ savedParfuem?.name }}</strong>
+            wurde erfolgreich hinzugefügt!
+          </p>
+          <!-- Button leitet zur Tabellen-Seite weiter -->
+          <button type="button"
+                  class="btn w-100 fw-bold mt-2"
+                  style="background: linear-gradient(135deg, #B8860B, #D4A843);
+                         color: white;
+                         border-radius: 50px;
+                         border: none;"
+                  (click)="confirm()">
+            <i class="bi bi-check2 me-2"></i>Ok — Zur Übersicht
+          </button>
+        </div>
+
+      </div>
     </div>
-    
-  </form>
+  }
+
+  <!-- FORMULAR: erscheint wenn noch nicht gespeichert (saved = false) -->
+  @else {
+    <div class="container" style="max-width: 680px;">
+
+      <!-- Seitenüberschrift -->
+      <div class="text-center mb-4">
+        <h2 class="fw-bold" style="color: #B8860B;">
+          ✦ Neues Parfüm hinzufügen ✦
+        </h2>
+        <p style="color: #6B4C3B;">
+          Fügen Sie ein neues Parfüm zur Kollektion hinzu
+        </p>
+      </div>
+
+      <!-- Formular-Card -->
+      <div style="background: white;
+                  border: 1px solid rgba(184,134,11,0.25);
+                  border-radius: 16px;
+                  padding: 36px;
+                  box-shadow: 0 4px 20px rgba(192,132,160,0.12);">
+
+        <!-- [formGroup]: verbindet HTML mit FormGroup in create.component.ts -->
+        <!-- (ngSubmit): ruft speichern() beim Absenden auf -->
+        <form [formGroup]="form" (ngSubmit)="speichern()">
+
+          <!-- NAME + MARKE (2 Spalten) -->
+          <div class="row mb-3">
+
+            <div class="col-md-6 mb-3 mb-md-0">
+              <label class="form-label fw-bold" style="color: #3D2B1F;">
+                Parfümname *
+              </label>
+              <!-- formControlName: verbindet Input mit FormControl -->
+              <!-- [class.is-invalid]: zeigt roten Rand wenn ungültig und berührt -->
+              <!-- [class.is-valid]: zeigt grünen Rand wenn gültig und berührt -->
+              <input type="text"
+                     class="form-control"
+                     style="border-color: rgba(184,134,11,0.3); border-radius: 8px;"
+                     formControlName="nameControl"
+                     placeholder="z.B. Atheer Oud"
+                     [class.is-invalid]="form.controls.nameControl.invalid
+                                        && form.controls.nameControl.touched"
+                     [class.is-valid]="form.controls.nameControl.valid
+                                      && form.controls.nameControl.touched">
+              <!-- Fehlermeldung bei leerem Feld -->
+              <div class="invalid-feedback">
+                Parfümname ist erforderlich (min. 2 Zeichen)!
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-bold" style="color: #3D2B1F;">
+                Marke *
+              </label>
+              <input type="text"
+                     class="form-control"
+                     style="border-color: rgba(184,134,11,0.3); border-radius: 8px;"
+                     formControlName="markeControl"
+                     placeholder="z.B. روان للعود"
+                     [class.is-invalid]="form.controls.markeControl.invalid
+                                        && form.controls.markeControl.touched"
+                     [class.is-valid]="form.controls.markeControl.valid
+                                      && form.controls.markeControl.touched">
+              <div class="invalid-feedback">
+                Marke ist erforderlich!
+              </div>
+            </div>
+
+          </div>
+
+          <!-- KATEGORIE (Dropdown) -->
+          <div class="mb-3">
+            <label class="form-label fw-bold" style="color: #3D2B1F;">
+              Kategorie *
+            </label>
+            <!-- mat-select ersetzt durch natives Bootstrap select -->
+            <select class="form-select"
+                    style="border-color: rgba(184,134,11,0.3); border-radius: 8px;"
+                    formControlName="kategorieControl"
+                    [class.is-invalid]="form.controls.kategorieControl.invalid
+                                       && form.controls.kategorieControl.touched"
+                    [class.is-valid]="form.controls.kategorieControl.valid
+                                     && form.controls.kategorieControl.touched">
+              <option value="">-- Bitte Kategorie wählen --</option>
+              <option value="عود">عود — Oud (Holzig)</option>
+              <option value="مسك">مسك — Musk (Weich)</option>
+              <option value="ورد">ورد — Rose (Blumig)</option>
+              <option value="بخور">بخور — Bakhoor (Rauchig)</option>
+              <option value="مختلط">مختلط — Gemischt</option>
+            </select>
+            <div class="invalid-feedback">
+              Bitte eine Kategorie auswählen!
+            </div>
+          </div>
+
+          <!-- BESCHREIBUNG (Textarea) -->
+          <div class="mb-3">
+            <label class="form-label fw-bold" style="color: #3D2B1F;">
+              Beschreibung *
+            </label>
+            <textarea class="form-control"
+                      style="border-color: rgba(184,134,11,0.3);
+                             border-radius: 8px;"
+                      formControlName="beschreibungControl"
+                      rows="3"
+                      placeholder="Beschreiben Sie den Duft, die Noten und den Charakter..."
+                      [class.is-invalid]="form.controls.beschreibungControl.invalid
+                                         && form.controls.beschreibungControl.touched"
+                      [class.is-valid]="form.controls.beschreibungControl.valid
+                                       && form.controls.beschreibungControl.touched">
+            </textarea>
+            <div class="invalid-feedback">
+              Beschreibung erforderlich (min. 10 Zeichen)!
+            </div>
+          </div>
+
+          <!-- PREIS + GRÖSSE + BESTAND (3 Spalten) -->
+          <div class="row mb-3">
+
+            <!-- Preis -->
+            <div class="col-md-4 mb-3 mb-md-0">
+              <label class="form-label fw-bold" style="color: #3D2B1F;">
+                Preis (€) *
+              </label>
+              <input type="number"
+                     class="form-control"
+                     style="border-color: rgba(184,134,11,0.3); border-radius: 8px;"
+                     formControlName="preisControl"
+                     placeholder="z.B. 89"
+                     [class.is-invalid]="form.controls.preisControl.invalid
+                                        && form.controls.preisControl.touched"
+                     [class.is-valid]="form.controls.preisControl.valid
+                                      && form.controls.preisControl.touched">
+              <div class="invalid-feedback">
+                Preis muss größer als 0 sein!
+              </div>
+            </div>
+
+            <!-- Größe -->
+            <div class="col-md-4 mb-3 mb-md-0">
+              <label class="form-label fw-bold" style="color: #3D2B1F;">
+                Größe *
+              </label>
+              <input type="text"
+                     class="form-control"
+                     style="border-color: rgba(184,134,11,0.3); border-radius: 8px;"
+                     formControlName="groesseControl"
+                     placeholder="z.B. 50ml oder 100ml"
+                     [class.is-invalid]="form.controls.groesseControl.invalid
+                                        && form.controls.groesseControl.touched"
+                     [class.is-valid]="form.controls.groesseControl.valid
+                                      && form.controls.groesseControl.touched">
+              <div class="invalid-feedback">
+                Größe ist erforderlich!
+              </div>
+            </div>
+
+            <!-- Bestand -->
+            <div class="col-md-4">
+              <label class="form-label fw-bold" style="color: #3D2B1F;">
+                Bestand (Stück)
+              </label>
+              <input type="number"
+                     class="form-control"
+                     style="border-color: rgba(184,134,11,0.3); border-radius: 8px;"
+                     formControlName="bestandControl"
+                     placeholder="0">
+            </div>
+
+          </div>
+
+          <!-- BILD-URL -->
+          <div class="mb-3">
+            <label class="form-label fw-bold" style="color: #3D2B1F;">
+              Bild-Pfad (aus assets/Bilder/)
+            </label>
+            <input type="text"
+                   class="form-control"
+                   style="border-color: rgba(184,134,11,0.3); border-radius: 8px;"
+                   formControlName="bildUrlControl"
+                   placeholder="assets/Bilder/Atheer_Oud.png">
+            <div class="form-text" style="color: #6B4C3B;">
+              Bilder liegen in src/assets/Bilder/ — Pfad ohne "src/" eingeben
+            </div>
+          </div>
+
+          <!-- BILDVORSCHAU: erscheint wenn ein Pfad eingegeben wurde -->
+          @if(form.controls.bildUrlControl.value) {
+            <div class="mb-3">
+              <!-- Vorschau des eingegebenen Bildes -->
+              <img [src]="form.controls.bildUrlControl.value"
+                   alt="Bildvorschau"
+                   style="width: 100%;
+                          max-height: 180px;
+                          object-fit: cover;
+                          border-radius: 8px;
+                          border: 2px solid rgba(184,134,11,0.3);"
+                   onerror="this.style.display='none'">
+            </div>
+          }
+
+          <!-- FEATURED-CHECKBOX -->
+          <div class="mb-4 form-check">
+            <input type="checkbox"
+                   class="form-check-input"
+                   id="featuredCheck"
+                   formControlName="featuredControl"
+                   style="border-color: #B8860B; width: 18px; height: 18px;">
+            <label class="form-check-label ms-2 fw-bold"
+                   for="featuredCheck"
+                   style="color: #B8860B;">
+              ✦ Als Featured-Parfüm auf der Startseite anzeigen
+            </label>
+          </div>
+
+          <!-- FORMULAR-BUTTONS -->
+          <div class="row gx-3">
+
+            <!-- Abbrechen: navigiert ohne Speichern zurück zur Liste -->
+            <div class="col-6">
+              <a routerLink="/table"
+                 class="btn w-100 fw-bold"
+                 style="background: transparent;
+                        color: #6B4C3B;
+                        border: 2px solid rgba(107,76,59,0.3);
+                        border-radius: 50px;">
+                <i class="bi bi-x-circle me-2"></i>Abbrechen
+              </a>
+            </div>
+
+            <!-- Speichern: ruft speichern() in create.component.ts auf -->
+            <div class="col-6">
+              <button type="submit"
+                      class="btn w-100 fw-bold"
+                      style="background: linear-gradient(135deg, #B8860B, #D4A843);
+                             color: white;
+                             border: none;
+                             border-radius: 50px;">
+                <i class="bi bi-save me-2"></i>Parfüm speichern
+              </button>
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+  }
+
 </div>
+<!-- Ende Create Component -->
