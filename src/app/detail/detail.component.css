@@ -1,0 +1,32 @@
+/* =============================================
+   DETAIL COMPONENT – Stile für das Edit-Formular
+   Identisch mit create.component.css
+   ============================================= */
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #B8860B !important;
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15) !important;
+}
+
+.form-control.is-valid,
+.form-select.is-valid {
+  border-color: #28a745 !important;
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: #dc3545 !important;
+}
+
+.form-check-input:checked {
+  background-color: #B8860B !important;
+  border-color: #B8860B !important;
+}
+
+button[type="submit"]:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(184, 134, 11, 0.35);
+  transition: all 0.2s ease;
+}
