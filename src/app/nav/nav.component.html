@@ -38,6 +38,10 @@
       <div class="navbar-nav ms-auto">
 
         <!-- Home-Link -->
+         <!-- RouterLink: Navigiert zur Startseite
+             routerLinkActive: Fügt die Klasse "active" hinzu, wenn der Link aktiv ist
+             [routerLinkActiveOptions]="{exact:true}": Nur aktiv, wenn die URL exakt "/" ist
+             (click)="isMenuCollapsed = true": Schließt das Burger-Menü nach dem Klick -->
         <a class="nav-link fw-bold"
            routerLink="/"
            routerLinkActive="active"
@@ -57,6 +61,9 @@
         </a>
 
         <!-- Neues Parfüm -->
+         <!-- RouterLink: Navigiert zur Seite zum Erstellen eines neuen Parfüms
+             routerLinkActive: Fügt die Klasse "active" hinzu, wenn der Link aktiv ist
+             (click)="isMenuCollapsed = true": Schließt das Burger-Menü nach dem Klick -->
         <a class="nav-link fw-bold"
            routerLink="/create"
            routerLinkActive="active"
