@@ -35,14 +35,14 @@ export class DetailComponent implements OnInit {
 
   // FormGroup: enthält alle Felder für das Update
   form = new FormGroup({
-    nameControl:        new FormControl('', [Validators.required]),
-    markeControl:       new FormControl('', [Validators.required]),
+    nameControl:        new FormControl('', [Validators.required]), // wird im HTML mit formControlName="nameControl" gebunden
+    markeControl:       new FormControl('', [Validators.required]), 
     kategorieControl:   new FormControl('', [Validators.required]),
     beschreibungControl:new FormControl('', [Validators.required]),
-    preisControl:       new FormControl(0,  [Validators.required, Validators.min(1)]),
+    preisControl:       new FormControl(0,  [Validators.required, Validators.min(1)]), // Preis muss > 0 sein
     groesseControl:     new FormControl('', [Validators.required]),
     bildUrlControl:     new FormControl(''),
-    featuredControl:    new FormControl(false)
+    featuredControl:    new FormControl(false) // Checkbox, true/false
   });
 
   // ActivatedRoute: zum Auslesen der URL-Parameter

@@ -1,28 +1,72 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(153, 99, 33); border-bottom: 1px solid #dbae32;">
+<!-- ================================================
+     NAV COMPONENT – Navigationsleiste
+     Bootstrap navbar mit RouterLink
+     Responsive Burger-Menü für Mobile
+     ================================================ -->
+
+<nav class="navbar navbar-expand-lg"
+     style="background: linear-gradient(90deg, #C084A0, #B8860B);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+
   <div class="container-fluid">
-    <a class="navbar-brand fw-bold" routerLink="/" style="color: #C9A84C; font-size: 1.5rem;">
-      روان للعود 🌿
+
+    <!-- Logo / Markenname --> 
+    <a class="navbar-brand fw-bold"
+       routerLink="/"
+       style="color: white; font-size: 1.3rem;">
+      🌿 روان للعود
     </a>
-    <button class="navbar-toggler" type="button"
-      (click)="isMenuCollapsed = !isMenuCollapsed"
-      data-bs-toggle="collapse" data-bs-target="#navMenu">
+
+    <!-- Burger-Menü-Button für Mobile -->
+    <button class="navbar-toggler"
+            type="button"
+            (click)="isMenuCollapsed = !isMenuCollapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            style="border-color: white;">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" [class.show]="!isMenuCollapsed" id="navMenu">
+
+    <!-- Navigations-Links -->
+    <div class="collapse navbar-collapse"
+         [class.show]="!isMenuCollapsed"
+         id="navbarNavAltMarkup">
+
       <div class="navbar-nav ms-auto">
-        <a class="nav-link" routerLink="/" routerLinkActive="active"
-           [routerLinkActiveOptions]="{exact:true}" (click)="isMenuCollapsed = true">
-           <i class="bi bi-house-door"></i> Home 
+
+        <!-- Home-Link -->
+        <a class="nav-link fw-bold"
+           routerLink="/"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact:true}"
+           (click)="isMenuCollapsed = true"
+           style="color: white;">
+          <i class="bi bi-house-door me-1"></i>Startseite
         </a>
-        <a class="nav-link" routerLink="/table" routerLinkActive="active"
-           (click)="isMenuCollapsed = true">
-          <i class="bi bi-grid"></i> Table 
+
+        <!-- Parfüm-Liste -->
+        <a class="nav-link fw-bold"
+           routerLink="/table"
+           routerLinkActive="active"
+           (click)="isMenuCollapsed = true"
+           style="color: white;">
+          <i class="bi bi-grid me-1"></i>Alle Parfüms
         </a>
-        <a class="nav-link" routerLink="/create" routerLinkActive="active"
-           (click)="isMenuCollapsed = true">
-          <i class="bi bi-plus-circle"></i> Create Parfüm
+
+        <!-- Neues Parfüm -->
+        <a class="nav-link fw-bold"
+           routerLink="/create"
+           routerLinkActive="active"
+           (click)="isMenuCollapsed = true"
+           style="color: white;">
+          <i class="bi bi-plus-circle me-1"></i>Neues Parfüm
         </a>
+
       </div>
     </div>
   </div>
+
 </nav>
