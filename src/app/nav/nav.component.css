@@ -1,9 +1,17 @@
-.nav-link {
-  color: #F5F0E8 !important;
-  font-size: 1rem;
+/* =============================================
+   NAV COMPONENT – Navbar-Stile
+   ============================================= */
+
+.navbar-brand {
+  font-size: 1.3rem !important;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
 .nav-link.active {
-  color: #C9A84C !important;
+  border-bottom: 2px solid white;
+  padding-bottom: 4px;
 }
