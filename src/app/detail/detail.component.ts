@@ -8,7 +8,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from '../shared/backend.service';
 import { Parfuem } from '../shared/parfuem';
 
@@ -18,7 +18,7 @@ import { Parfuem } from '../shared/parfuem';
   // CommonModule: für @if, @else
   // ReactiveFormsModule: für FormGroup
   // RouterLink: für den Abbrechen-Button
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.css'
 })
