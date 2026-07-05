@@ -1,59 +1,40 @@
-# ParfuemFrontend
+# 🌿 Rawan Oud (روان للعود)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.10.
+Rawan Oud ist eine moderne E-Commerce-Webanwendung für arabische Luxusparfüme. 
+Das Projekt wurde als WebTech-Semesteraufgabe an der HTW Berlin entwickelt und umfasst ein Frontend zur Präsentation der Parfüms sowie ein robustes Backend zur Datenverwaltung.
 
-## Development server
+- **Frontend:** Angular (Version 17) mit Standalone Components
+- **Backend:** Node.js & Express.js
+- **Datenbank:** MongoDB (Mongoose)
 
-To start a local development server, run:
+---
 
+## 📸 Screenshots
+
+*(Tipp: Speichere deine Bilder in einem Ordner namens `screenshots` im Hauptverzeichnis)*
+
+**1. Startseite mit Hero-Video:**
+![Startseite](./Parfuem_Frontend/src/assets/Bilder/home.png)
+![Startseite](./Parfuem_Frontend/src/assets/Bilder/home2.png)
+
+**2. Parfüm-Kollektion (Tabelle):**
+![Parfüm Tabelle](./Parfuem_Frontend/src/assets/Bilder/table.png)
+
+**3. Neues Parfüm anlegen (Formular):**
+![Create Formular](./Parfuem_Frontend/src/assets/Bilder/create.png)
+
+---
+
+## ⚙️ Installation & Setup
+
+### Voraussetzungen
+* **Node.js** (lokal installiert)
+* **Angular CLI** (falls nicht installiert: `npm install -g @angular/cli`)
+* **Git** (zum Klonen des Repositories)
+* **MongoDB** (Lokal installiert und laufend, z.B. über MongoDB Compass)
+
+### Repository klonen
+Öffne das Terminal und führe folgenden Befehl aus:
 ```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+git clone <DEIN_GITLAB_ODER_GITHUB_LINK>
+cd PARFUEM_SHOP_PROJEKT
