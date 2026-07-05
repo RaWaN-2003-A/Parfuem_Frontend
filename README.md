@@ -8,6 +8,7 @@ Das Projekt wurde als WebTech-Semesteraufgabe an der HTW Berlin entwickelt und u
 **Kurs:** Webtech (Frontend & Backend)  
 **Semester:** SS 2026 
 
+### 🛠️ Tech-Stack
 - **Frontend:** Angular (Version 17) mit Standalone Components
 - **Backend:** Node.js & Express.js
 - **Datenbank:** MongoDB Compass (Mongoose)
@@ -15,7 +16,6 @@ Das Projekt wurde als WebTech-Semesteraufgabe an der HTW Berlin entwickelt und u
 ---
 
 ## 📸 Screenshots
-
 
 **1. Startseite mit Hero-Video:**
 ![Startseite](./screenshots/home.png)
@@ -29,17 +29,6 @@ Das Projekt wurde als WebTech-Semesteraufgabe an der HTW Berlin entwickelt und u
 
 ---
 
-## 🧪 Testing & Validierung
-
-### Manuelles Testen
-
-```bash
-# 1. Backend antwortet
-curl http://localhost:3000/perfumes
-
-# 2. Frontend lädt
-# Browser: http://localhost:4200
-
 ## ⚙️ Installation & Setup
 
 ### Voraussetzungen
@@ -48,48 +37,80 @@ curl http://localhost:3000/perfumes
 * **Git** (zum Klonen des Repositories)
 * **MongoDB** (Lokal installiert und laufend, z.B. über MongoDB Compass)
 
-### Repository klonen
-Öffne das Terminal und führe folgenden Befehl aus:
-```bash
-git clone https://github.com/RaWaN-2003-A/Parfuem_Frontend.git
-**1. Navigiere in das Frontend-Verzeichnis:**
-cd Parfuem_Frontend
-## Frontend starten mit 
-ng serve 
-git clone https://github.com/RaWaN-2003-A/Parfuem_Backend.git
-**2. Navigiere in das Backend-Verzeichnis:**
-cd Parfuem_Backend
-## Backend starten mit 
-node server.js 
-## Abhängigkeiten installieren
-npm install 
-### 1. Datenbank initialisieren (.env erstellen)
-Erstelle eine Datei namens `.env` im Verzeichnis `Parfuem_Backend` und füge den folgenden Inhalt ein:
+### 1. Backend einrichten
+Öffne das Terminal und klone das Backend-Repository:
 
-```env
+```bash
+git clone https://github.com/RaWaN-2003-A/Parfuem_Backend.git
+cd Parfuem_Backend
+npm install
+```
+
+Datenbank initialisieren (.env erstellen): Erstelle eine Datei namens `.env` im Verzeichnis `Parfuem_Backend` und füge den folgenden Inhalt ein:
+
+```bash
 DB_CONNECTION=mongodb://127.0.0.1:27017
 DATABASE=rawan_db
 PORT=3000
 NODE_ENV=development
+```
 
-## 🎓 Lernziele erreicht
+Backend-Start:
 
-✅ **Angular verstanden:** Components, Services, Routing  
-✅ **TypeScript:** Types, Interfaces, Generics  
-✅ **Express/Node.js:** REST API, Routes, Error Handling  
-✅ **MongoDB:** Schema-Design, CRUD-Operationen  
-✅ **HTML/CSS:** Bootstrap, Responsive Design  
-✅ **Git:** Versionskontrolle, Commit-Hygiene  
-✅ **Datenfluss:** Frontend ↔ Backend ↔ MongoDB  
+```bash
+node server.js
+```
 
-## 🤖 Verwendete KI-Tools
+### 2. Frontend einrichten
+Öffne ein neues Terminal-Fenster und klone das Frontend-Repository:
+
+```bash
+git clone https://github.com/RaWaN-2003-A/Parfuem_Frontend.git
+cd Parfuem_Frontend
+npm install
+```
+
+Frontent-Start (Entwicklungsmodus):
+
+```bash
+ng serve
+```
+
+
+### 🧪 Testen & Validierung
+Manuelles Testen
+**Backend-Prüfung:**
+curl http://localhost:3000/api/parfuems
+
+**Frontend geladen: Öffne deinen Browser und gehe zu:**
+ http://localhost:4200
+
+### 🎓 Lernziele erreicht
+✅ Angular verstanden: Components, Services, Routing
+
+✅ TypeScript: Typen, Schnittstellen, Generika
+
+✅ Express/Node.js: REST-API, Routen, Fehlerbehandlung
+
+✅ MongoDB: Schema-Design, CRUD-Operationen
+
+✅ HTML/CSS: Bootstrap, responsives Design
+
+✅ Git: Versionskontrolle, Commit-Hygiene
+
+✅ Datenfluss: Frontend ↔ Backend ↔ MongoDB
+
+### 🤖 Verwendete KI-Tools
 Im Rahmen der Erstellung dieser Semesteraufgabe wurde Künstliche Intelligenz (Claude/Gemini) unterstützend eingesetzt für:
-* **Verständnisfragen:** Erläuterung komplexer Konzepte wie Angular-Services und Dependency Injection.
-* **Debugging:** Unterstützung bei der Fehlersuche (z.B. bei Modul-Import-Fehlern).
-* **Strukturierung:** Hilfe bei der logischen Planung der REST-API-Routen.
-* **Dokumentation:** 
 
----
+**Verständnisfragen:** Erläuterung komplexer Konzepte wie Angular-Services und Dependency Injection.
 
-*Dieses Projekt folgt den Anforderungen von Prof. J. Freiheit (HTW Berlin, WebTech SS2026)*
-© 2026 Rawan —   روان للعود
+**Debugging:** Unterstützung bei der Fehlersuche (z.B. bei Modul-Import-Fehlern).
+
+**Strukturierung:** Hilfe bei der logischen Planung der REST-API-Routen.
+
+**Dokumentation:** Unterstützung bei der Formulierung und Markdown-Formatierung dieser README-Datei.
+
+Dieses Projekt folgt den Anforderungen von Prof. J. Freiheit (HTW Berlin, WebTech SS 2026)
+
+© 2026 Rawan Alhussin —  روان للعود
