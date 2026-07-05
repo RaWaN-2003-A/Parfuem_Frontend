@@ -5,23 +5,22 @@ Das Projekt wurde als WebTech-Semesteraufgabe an der HTW Berlin entwickelt und u
 
 - **Frontend:** Angular (Version 17) mit Standalone Components
 - **Backend:** Node.js & Express.js
-- **Datenbank:** MongoDB (Mongoose)
+- **Datenbank:** MongoDB Compass (Mongoose)
 
 ---
 
 ## 📸 Screenshots
 
-*(Tipp: Speichere deine Bilder in einem Ordner namens `screenshots` im Hauptverzeichnis)*
 
 **1. Startseite mit Hero-Video:**
-![Startseite](./Parfuem_Frontend/src/assets/Bilder/home.png)
-![Startseite](./Parfuem_Frontend/src/assets/Bilder/home2.png)
+![Startseite](./screenshots/home.png)
+![Startseite](./screenshots/home2.png)
 
 **2. Parfüm-Kollektion (Tabelle):**
-![Parfüm Tabelle](./Parfuem_Frontend/src/assets/Bilder/table.png)
+![Parfüm Tabelle](./screenshots/table.png)
 
 **3. Neues Parfüm anlegen (Formular):**
-![Create Formular](./Parfuem_Frontend/src/assets/Bilder/create.png)
+![Create Formular](./screenshots/create.png)
 
 ---
 
@@ -36,5 +35,8 @@ Das Projekt wurde als WebTech-Semesteraufgabe an der HTW Berlin entwickelt und u
 ### Repository klonen
 Öffne das Terminal und führe folgenden Befehl aus:
 ```bash
-git clone <DEIN_GITLAB_ODER_GITHUB_LINK>
-cd PARFUEM_SHOP_PROJEKT
+git clone https://github.com/RaWaN-2003-A/Parfuem_Frontend.git
+cd Parfuem_Frontend
+
+git clone https://github.com/RaWaN-2003-A/Parfuem_Backend.git
+cd Parfuem_Backend
