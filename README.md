@@ -70,7 +70,7 @@ cd Parfuem_Frontend
 npm install
 ```
 
-Frontent-Start (Entwicklungsmodus):
+Frontend-Start (Entwicklungsmodus):
 
 ```bash
 ng serve

@@ -205,25 +205,28 @@
           <!-- BILD-URL -->
           <div class="mb-3">
             <label class="form-label fw-bold" style="color: #3D2B1F;">
-              Bild-Pfad
+              Bild-URL *
             </label>
             <input type="text"
                    class="form-control"
                    style="border-color: rgba(184,134,11,0.3); border-radius: 8px;"
-                   formControlName="bildUrlControl">
+                   formControlName="bildUrlControl"
+                   placeholder="z.B. assets/Bilder/name.png">
+            <!-- نص مساعد للتذكير بكتابة المسار كاملاً -->
+            <small class="text-muted mt-1 d-block" style="font-size: 0.85em;">
+              Wichtig: Bitte den kompletten Pfad eingeben, z.B. <b>assets/Bilder/name.png</b>
+            </small>
           </div>
 
           <!-- BILDVORSCHAU -->
           @if(form.controls.bildUrlControl.value) {
-            <div class="mb-3">
+            <div class="mb-3 text-center" style="background-color: #fff; padding: 10px; border-radius: 8px; border: 1px dashed rgba(184,134,11,0.5);">
               <img [src]="form.controls.bildUrlControl.value"
                    alt="Bildvorschau"
                    style="width: 100%;
-                          max-height: 180px;
-                          object-fit: cover;
-                          border-radius: 8px;
-                          border: 2px solid rgba(184,134,11,0.3);"
-                   onerror="this.style.display='none'">
+                          max-height: 200px;
+                          object-fit: contain;
+                          border-radius: 8px;">
             </div>
           }
 
@@ -237,7 +240,7 @@
             <label class="form-check-label ms-2 fw-bold"
                    for="featuredCheck"
                    style="color: #B8860B;">
-              ✦ Als Featured-Parfüm auf der Startseite anzeigen
+               Als Featured-Parfüm auf der Startseite anzeigen
             </label>
           </div>
 

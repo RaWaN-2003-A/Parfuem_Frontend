@@ -123,8 +123,6 @@
             <tbody>
 
               <!-- SCHLEIFE: für jedes Parfüm eine Tabellenzeile -->
-              <!-- track p._id: Angular nutzt die MongoDB-ID zur Optimierung -->
-              <!-- let i = $index: laufende Nummer ab 0 (wir zeigen i+1) -->
               @for (p of parfuems; track p._id; let i = $index) {
 
                 <tr style="border-bottom: 1px solid rgba(201,168,76,0.08);">
@@ -133,15 +131,13 @@
                   <td style="color: #9E9E9E;">{{ i + 1 }}</td>
 
                   <!-- PRODUKTBILD -->
-                  <!-- [src]: lädt Bild aus assets/Bilder/ anhand bildUrl aus DB -->
-                  <!-- Fallback 1: leere bildUrl → erstes verfügbares Bild -->
-                  <!-- Fallback 2 (onerror): Bild nicht gefunden → Ersatzbild -->
                   <td>
                     <img
-                      [src]="p.bildUrl"
+                      [src]="p.bildUrl || ''"
                       alt="{{ p.name }}"
                       style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;"
-                    >
+                      loading="lazy"
+                      onerror="this.style.display='none'">
                   </td>
 
                   <!-- PARFÜMNAME fett -->
@@ -153,7 +149,6 @@
                   </td>
 
                   <!-- KATEGORIE als goldener Badge -->
-                  <!-- Wird nur angezeigt wenn kategorie vorhanden -->
                   <td>
                     @if(p.kategorie) {
                       <span class="badge"
@@ -164,8 +159,7 @@
                         {{ p.kategorie }}
                       </span>
                     } @else {
-                      <!-- Fallback wenn keine Kategorie gesetzt -->
-                      <span style="color: #9E9E9E; font-size: 0.8rem;">–</span>
+                      <span style="color: #9E9E9E; font-size: 0.8rem;">-</span>
                     }
                   </td>
 
@@ -176,13 +170,10 @@
                     </span>
                   </td>
 
-                  <!-- GRÖßE z.B. 50ml -->
-                  <td style="color: #9E9E9E;">
-                    {{ p.groesse || '–' }}
-                  </td>
+                  <!-- GRÖßE -->
+                  <td style="color: #9E9E9E;">{{ p.groesse || '-' }}</td>
 
                   <!-- BEARBEITEN-BUTTON -->
-                  <!-- [routerLink]: navigiert zu /detail/{id} mit MongoDB-ID -->
                   <td>
                     <a [routerLink]="['/detail', p._id]"
                        class="btn btn-sm btn-outline-warning"
@@ -192,30 +183,24 @@
                   </td>
 
                   <!-- LÖSCHEN-BUTTON -->
-                  <!-- (click): ruft delete() in table.component.ts auf -->
-                  <!-- Öffnet das Bestätigungs-Modal (deleteStatus = true) -->
                   <td>
                     <button class="btn btn-sm btn-outline-danger"
-                            (click)="delete(p._id)"
-                            title="Parfüm löschen">
+                       (click)="delete(p._id)"
+                       title="Parfüm löschen">
                       <i class="bi bi-trash"></i>
                     </button>
                   </td>
 
                 </tr>
               }
-              <!-- Ende @for-Schleife -->
 
-              <!-- LEERE TABELLE: angezeigt wenn keine Parfüms in DB -->
               @if(parfuems.length === 0) {
                 <tr>
                   <td colspan="9"
                       class="text-center p-5"
                       style="color: #9E9E9E;">
-                    <!-- Inbox-Symbol als visueller Hinweis -->
                     <i class="bi bi-inbox d-block mb-2"
-                       style="font-size: 2.5rem;
-                              color: rgba(201,168,76,0.3);">
+                       style="font-size: 2.5rem; color: rgba(201,168,76,0.3);">
                     </i>
                     Keine Parfüms gefunden.<br>
                     Bitte Backend-Verbindung prüfen!
@@ -226,12 +211,7 @@
             </tbody>
           </table>
         </div>
-        <!-- Ende table-responsive -->
-
       </div>
-      <!-- Ende card -->
-
     </div>
   </div>
 }
-<!-- Ende @else (Tabellen-Ansicht) -->

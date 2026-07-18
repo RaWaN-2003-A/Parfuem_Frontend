@@ -55,24 +55,30 @@ export class TableComponent implements OnInit {
   // Wird im HTML-Modal / vom Löschen-Button aufgerufen.
   // Ablauf:
   // 1) ID des angeklickten Parfüms prüfen
-  // 2) vollständiges Parfüm aus dem Backend holen (damit der Name/Details im Modal da sind)
-  // 3) Modal einschalten (deleteStatus = true)
+  // 2) Modal einschalten (deleteStatus = true)
   delete(id: string | undefined): void {
-    // Falls kein gültiger Parameter übergeben wurde: keine Aktion.
-    if (!id) return;
+    // F12-Log zur Kontrolle
+    console.log('Löschen-Button geklickt! Übergebene ID:', id); 
 
-    // Hole das ausgewählte Parfüm anhand seiner DB-ID.
-    this.bs.getOne(id)
-      .then(response => {
-        // Speichere das geladene Parfüm fürs Modal.
-        this.selectedParfuem = response;
-        // Zeige das Bestätigungs-Modal.
-        this.deleteStatus = true;
-      })
-      .catch(err => {
-        // Fehlerfall: Parfüm konnte nicht geladen werden.
-        console.error('Fehler beim Laden des Parfüms:', err);
-      });
+    // Falls kein gültiger Parameter übergeben wurde: keine Aktion.
+    if (!id) {
+        console.error('FEHLER: Es wurde keine ID übergeben!');
+        return;
+    }
+
+    
+    // Wir suchen das Parfüm direkt in unserer geladenen Liste (Frontend),
+    // anstatt das Backend (getOne) zu fragen. Das verhindert den 404-Fehler!
+    const gefundenesParfuem = this.parfuems.find(p => p._id === id);
+
+    if (gefundenesParfuem) {
+      // Speichere das geladene Parfüm fürs Modal.
+      this.selectedParfuem = gefundenesParfuem;
+      // Zeige das Bestätigungs-Modal.
+      this.deleteStatus = true;
+    } else {
+      console.error('Fehler: Parfüm in der lokalen Liste nicht gefunden!');
+    }
   }
 
   // Wird im HTML-Modal aufgerufen, wenn der Nutzer "Löschen" bestätigt.
@@ -82,8 +88,10 @@ export class TableComponent implements OnInit {
   // 3) danach Liste neu laden, damit die Tabelle aktuell ist
   confirm(): void {
     // MongoDB-ID liegt typischerweise im Feld _id.
-    // Optionales Chaining, damit der Code nicht crasht falls selectedParfuem noch nicht gesetzt wurde.
+    // Akzeptiert id ODER _id aus dem Backend
     const id = this.selectedParfuem?._id;
+    console.log('Bestätigen geklickt! Lösche ID:', id);
+
     if (!id) return;
 
     // 1) Löschen im Backend
@@ -115,5 +123,3 @@ export class TableComponent implements OnInit {
     this.cancel();
   }
 }
-
-

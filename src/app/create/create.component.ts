@@ -55,10 +55,11 @@ export class CreateComponent {
       // Neues Parfüm-Objekt aus Formularwerten zusammenbauen
       const neuesParfuem: Parfuem = {
         name:         values.nameControl         || '', // || '' sorgt dafür, dass bei undefined oder null ein leerer String verwendet wird
-        marke:        values.markeControl        || '',// Bei Preis wird 0 verwendet, wenn kein gültiger Wert eingegeben wurde
+        marke:        values.markeControl        || '', // Bei Preis wird 0 verwendet, wenn kein gültiger Wert eingegeben wurde
         kategorie:    values.kategorieControl    || '', // Alle Felder werden mit || '' oder || 0 abgesichert, damit kein undefined oder null in die DB kommt
         beschreibung: values.beschreibungControl || '',  // Beschreibung wird mit || '' abgesichert
         preis:        Number(values.preisControl) || 0, // Preis muss als Zahl gespeichert werden, daher Number() und Absicherung mit || 0
+        bestand:      Number(values.bestandControl) || 0, // Bestand wird mit || 0 abgesichert, damit es immer eine Zahl ist
         groesse:      values.groesseControl      || '', // Groesse wird mit || '' abgesichert
         bildUrl:      values.bildUrlControl      || '', // Bild-URL wird mit || '' abgesichert
         featured:     values.featuredControl     || false // Featured wird mit || false abgesichert, damit es immer einen Boolean-Wert hat
