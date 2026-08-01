@@ -35,10 +35,12 @@
 
 /* Video-Container */
 .hero-video-container {
-  height: 88vh;
+  height: 60vh;
+  width: 100%;
   min-height: 500px;
   position: relative;
   overflow: hidden;
+  margin-bottom: 2rem;
 }
 
 /* Falls Video nicht lädt: Hintergrundbild als Fallback */
