@@ -123,6 +123,7 @@
             <tbody>
 
               <!-- SCHLEIFE: für jedes Parfüm eine Tabellenzeile -->
+               <!-- track parfuem._id wichtig für Performance wenn die Listr sich ändert,weiß Angular das objekt mit id ist das gleich nicht neu erstellen -->
               @for (p of parfuems; track p._id; let i = $index) {
 
                 <tr style="border-bottom: 1px solid rgba(201,168,76,0.08);">
